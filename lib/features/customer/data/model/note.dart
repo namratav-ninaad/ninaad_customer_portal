@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:dayuri/core/enum/app_enum.dart';
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
 
 class Note {
   final NoteType type; // 'text', 'voice', 'followup'

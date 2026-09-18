@@ -1,4 +1,4 @@
-import 'package:dayuri/core/enum/app_enum.dart';
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
 import 'package:equatable/equatable.dart';
 
 class ForgotPasswordState extends Equatable {

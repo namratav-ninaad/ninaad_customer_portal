@@ -1,5 +1,5 @@
-import 'package:yuri_sale/core/enum/app_enum.dart';
-import 'package:yuri_sale/features/order/domain/entities/search_order_data.dart';
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
+import 'package:ninaad_customer_portal/features/order/domain/entities/search_order_data.dart';
 
 abstract class OrderEvent {}
 

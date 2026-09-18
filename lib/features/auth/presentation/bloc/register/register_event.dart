@@ -1,6 +1,6 @@
-import 'package:dayuri/features/auth/data/model/country.dart';
-import 'package:dayuri/features/auth/data/model/state.dart';
-import 'package:dayuri/features/auth/domain/entities/register_data.dart';
+import 'package:ninaad_customer_portal/features/auth/data/model/country.dart';
+import 'package:ninaad_customer_portal/features/auth/data/model/state.dart';
+import 'package:ninaad_customer_portal/features/auth/domain/entities/register_data.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class RegisterEvent extends Equatable {
@@ -48,8 +48,9 @@ class FetchCountryEvent extends RegisterEvent {}
 class FetchStateEvent extends RegisterEvent {
   final int countryId;
 
-  FetchStateEvent(this.countryId);
+  const FetchStateEvent(this.countryId);
 
+  @override
   List<Object?> get props => [countryId];
 }
 
@@ -57,8 +58,9 @@ class FetchStateEvent extends RegisterEvent {
 class SelectCountryEvent extends RegisterEvent {
   final CountryModel country;
 
-  SelectCountryEvent(this.country);
+  const SelectCountryEvent(this.country);
 
+  @override
   List<Object?> get props => [country];
 }
 
@@ -66,7 +68,8 @@ class SelectCountryEvent extends RegisterEvent {
 class SelectStateEvent extends RegisterEvent {
   final StateModel state;
 
-  SelectStateEvent(this.state);
+  const SelectStateEvent(this.state);
 
+  @override
   List<Object?> get props => [state];
 }

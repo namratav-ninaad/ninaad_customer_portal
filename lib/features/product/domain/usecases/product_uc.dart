@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:yuri_sale/core/error/failures.dart';
-import 'package:yuri_sale/features/product/data/model/product.dart';
-import 'package:yuri_sale/features/product/data/repository/product_repository.dart';
-import 'package:yuri_sale/features/product/domain/entities/product_filter_data.dart';
+import 'package:ninaad_customer_portal/core/error/failures.dart';
+import 'package:ninaad_customer_portal/features/product/data/model/product.dart';
+import 'package:ninaad_customer_portal/features/product/data/repository/product_repository.dart';
+import 'package:ninaad_customer_portal/features/product/domain/entities/product_filter_data.dart';
 
 class ProductUseCase {
   final ProductRepository repository;

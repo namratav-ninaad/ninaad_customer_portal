@@ -1,4 +1,4 @@
-import 'package:yuri_sale/core/enum/app_enum.dart';
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
 
 class SearchOrderData {
   final OrderStatus? status;

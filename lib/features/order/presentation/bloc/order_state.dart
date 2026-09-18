@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:yuri_sale/core/enum/app_enum.dart';
-import 'package:yuri_sale/features/order/data/model/order.dart';
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
+import 'package:ninaad_customer_portal/features/order/data/model/order.dart';
 
 class OrderState extends Equatable {
   final bool isLoading;

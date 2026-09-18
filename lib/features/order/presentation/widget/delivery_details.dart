@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:yuri_sale/core/constants/app_sizes.dart';
-import 'package:yuri_sale/core/constants/app_strings.dart';
-import 'package:yuri_sale/core/theme/theme_color_extension.dart';
-import 'package:yuri_sale/core/widgets/common_bg_icon_and_text.dart';
-import 'package:yuri_sale/features/cart/presentation/widget/summary_row.dart';
-import 'package:yuri_sale/features/order/data/model/order.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_bg_icon_and_text.dart';
+import 'package:ninaad_customer_portal/features/cart/presentation/widget/summary_row.dart';
+import 'package:ninaad_customer_portal/features/order/data/model/order.dart';
 
 class AddressDetails extends StatelessWidget {
   const AddressDetails({
@@ -23,10 +23,9 @@ class AddressDetails extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(AppSizes.p12),
       decoration: BoxDecoration(
-        // color: context.white,
         borderRadius: BorderRadius.circular(AppSizes.r12),
-        // border: Border.all(color: context.greyC8),
-        color: context.greyFA,
+        border: Border.all(color: context.greyC8),
+        // color: context.greyFA,
       ),
       child: Column(
         children: [
@@ -38,7 +37,7 @@ class AddressDetails extends StatelessWidget {
           SummaryRow(
             textColor: context.grey89,
             valueColor: context.black,
-            label: AppStringsConstants.deliveryDate,
+            label: AppStringsConstants.deliveryName,
             value: addressModel.name,
           ),
           if (addressModel.fullAddress.isNotEmpty)

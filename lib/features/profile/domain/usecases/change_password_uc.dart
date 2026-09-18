@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:dayuri/core/error/failures.dart';
-import 'package:dayuri/features/profile/data/repository/profile_repository.dart';
-import 'package:dayuri/features/profile/domain/entities/change_password_data.dart';
+import 'package:ninaad_customer_portal/core/error/failures.dart';
+import 'package:ninaad_customer_portal/features/profile/data/repository/profile_repository.dart';
+import 'package:ninaad_customer_portal/features/profile/domain/entities/change_password_data.dart';
 
 class ChangePasswordUseCase {
   final ProfileRepository repository;

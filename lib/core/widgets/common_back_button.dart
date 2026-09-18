@@ -1,7 +1,7 @@
-import 'package:dayuri/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:dayuri/core/constants/app_sizes.dart';
-import 'package:dayuri/core/routes/app_routes.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/routes/app_routes.dart';
 
 class CommonBackButton extends StatelessWidget {
   const CommonBackButton({super.key, this.onTap});

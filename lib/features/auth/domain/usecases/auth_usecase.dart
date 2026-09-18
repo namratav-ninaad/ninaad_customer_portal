@@ -1,13 +1,13 @@
 import 'package:dartz/dartz.dart';
-import 'package:dayuri/core/error/failures.dart';
-import 'package:dayuri/features/auth/data/model/country.dart';
-import 'package:dayuri/features/auth/data/model/login_response_model.dart';
-import 'package:dayuri/features/auth/data/model/state.dart';
-import 'package:dayuri/features/auth/data/repository/auth_repository.dart';
-import 'package:dayuri/features/auth/domain/entities/login_data.dart';
-import 'package:dayuri/features/auth/domain/entities/register_data.dart';
-import 'package:dayuri/features/auth/domain/entities/reset_password_submitted.dart';
-import 'package:dayuri/features/auth/domain/entities/verify_otp_submitted.dart';
+import 'package:ninaad_customer_portal/core/error/failures.dart';
+import 'package:ninaad_customer_portal/features/auth/data/model/country.dart';
+import 'package:ninaad_customer_portal/features/auth/data/model/login_response_model.dart';
+import 'package:ninaad_customer_portal/features/auth/data/model/state.dart';
+import 'package:ninaad_customer_portal/features/auth/data/repository/auth_repository.dart';
+import 'package:ninaad_customer_portal/features/auth/domain/entities/login_data.dart';
+import 'package:ninaad_customer_portal/features/auth/domain/entities/register_data.dart';
+import 'package:ninaad_customer_portal/features/auth/domain/entities/reset_password_submitted.dart';
+import 'package:ninaad_customer_portal/features/auth/domain/entities/verify_otp_submitted.dart';
 
 class LoginUseCase {
   final AuthRepository repository;

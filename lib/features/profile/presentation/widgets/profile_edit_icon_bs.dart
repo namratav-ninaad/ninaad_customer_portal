@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:dayuri/core/constants/app_strings.dart';
-import 'package:dayuri/core/widgets/common_divider.dart';
-import 'package:dayuri/features/profile/presentation/widgets/profile_icon_edit_tile.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_divider.dart';
+import 'package:ninaad_customer_portal/features/profile/presentation/widgets/profile_icon_edit_tile.dart';
 
 class ProfileEditIconBs extends StatelessWidget {
   const ProfileEditIconBs({super.key, required this.onTap});

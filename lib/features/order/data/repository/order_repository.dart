@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:yuri_sale/core/error/failures.dart';
-import 'package:yuri_sale/features/order/data/datasource/order_remote_datasource.dart';
-import 'package:yuri_sale/features/order/data/model/order.dart';
-import 'package:yuri_sale/features/order/domain/entities/search_order_data.dart';
+import 'package:ninaad_customer_portal/core/error/failures.dart';
+import 'package:ninaad_customer_portal/features/order/data/datasource/order_remote_datasource.dart';
+import 'package:ninaad_customer_portal/features/order/data/model/order.dart';
+import 'package:ninaad_customer_portal/features/order/domain/entities/search_order_data.dart';
 
 abstract class OrderRepository {
   Future<Either<Failure, List<OrderModel>>> fetchOrders({required SearchOrderData data});

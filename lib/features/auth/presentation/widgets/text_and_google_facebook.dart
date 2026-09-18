@@ -1,10 +1,10 @@
-import 'package:dayuri/core/constants/app_images.dart';
-import 'package:dayuri/core/constants/app_sizes.dart';
-import 'package:dayuri/core/constants/app_strings.dart';
-import 'package:dayuri/core/theme/theme_color_extension.dart';
-import 'package:dayuri/core/widgets/common_divider.dart';
-import 'package:dayuri/core/widgets/common_outline_button.dart';
-import 'package:dayuri/core/widgets/common_text_widget.dart';
+import 'package:ninaad_customer_portal/core/constants/app_images.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_divider.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_outline_button.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_widget.dart';
 import 'package:flutter/material.dart';
 
 class TextAndGoogleFacebook extends StatelessWidget {

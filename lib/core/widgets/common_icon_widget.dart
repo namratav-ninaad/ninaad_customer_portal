@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dayuri/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
 
 class CommonIconWidget extends StatelessWidget {
   const CommonIconWidget({

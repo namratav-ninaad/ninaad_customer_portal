@@ -1,20 +1,17 @@
-/*
 import 'package:flutter/material.dart';
-import 'package:dayuri/core/constants/app_colors.dart';
-import 'package:dayuri/core/constants/app_sizes.dart';
-import 'package:dayuri/core/constants/app_strings.dart';
-import 'package:dayuri/core/enum/app_enum.dart';
-import 'package:dayuri/core/routes/app_routes.dart';
-import 'package:dayuri/core/routes/routes_name.dart';
-import 'package:dayuri/core/theme/theme_color_extension.dart';
-import 'package:dayuri/core/widgets/common_appbar_widget.dart';
-import 'package:dayuri/core/widgets/common_divider.dart';
-import 'package:dayuri/features/customer/data/model/customer.dart';
-import 'package:dayuri/features/customer/presentation/widget/customer_card.dart';
-import 'package:dayuri/features/customer/presentation/widget/customer_tile.dart';
-import 'package:dayuri/features/invoice/domain/entities/invoice_data.dart';
-import 'package:dayuri/features/order/domain/entities/order_data.dart';
-import 'package:dayuri/features/send_message/domain/entities/send_message_data.dart';
+import 'package:ninaad_customer_portal/core/constants/app_colors.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
+import 'package:ninaad_customer_portal/core/routes/app_routes.dart';
+import 'package:ninaad_customer_portal/core/routes/routes_name.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_appbar_widget.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_divider.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/customer.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/widget/customer_card.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/widget/customer_tile.dart';
+import 'package:ninaad_customer_portal/features/order/domain/entities/order_data.dart';
 
 class CustomerDetails extends StatefulWidget {
   const CustomerDetails({super.key, required this.customer});
@@ -84,12 +81,12 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                 CommonDivider(),
                 AppSizes.h12,
                 CustomerTile(
-                  onTap: () => AppRoutes.pushNamed(
+                 /* onTap: () => AppRoutes.pushNamed(
                     RouteNames.invoicePage,
                     arguments: InvoiceData(
                       partnerId: widget.customer.contactId.toInt(),
                     ),
-                  ),
+                  ),*/
                   title: AppStringsConstants.invoices,
                   icon: Icons.edit_note,
                   value:
@@ -99,13 +96,13 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                 CommonDivider(),
                 AppSizes.h12,
                 CustomerTile(
-                  onTap: () => AppRoutes.pushNamed(
+                 /* onTap: () => AppRoutes.pushNamed(
                     RouteNames.invoicePage,
                     arguments: InvoiceData(
                       partnerId: widget.customer.contactId.toInt(),
                       isCustomer: true,
                     ),
-                  ),
+                  ),*/
                   title: AppStringsConstants.customerStatement,
                   icon: Icons.payment_outlined,
                   value:
@@ -115,10 +112,10 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                 CommonDivider(),
                 AppSizes.h12,
                 CustomerTile(
-                  onTap: () => AppRoutes.pushNamed(
+               /*   onTap: () => AppRoutes.pushNamed(
                     RouteNames.deliveryPage,
                     arguments: widget.customer.contactId.toInt(),
-                  ),
+                  ),*/
                   title: AppStringsConstants.deliveryHistory,
                   icon: Icons.local_shipping_outlined,
                   value: widget.customer.deliveryCount.toString(),
@@ -127,14 +124,14 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                 CommonDivider(),
                 AppSizes.h12,
                 CustomerTile(
-                  onTap: () => AppRoutes.pushNamed(
+                 /* onTap: () => AppRoutes.pushNamed(
                     RouteNames.sendMessagePage,
                     arguments: SendMessageData(
                       name: widget.customer.fullName,
                       partnerId: widget.customer.contactId.toInt(),
                       email: widget.customer.email,
                     ),
-                  ),
+                  ),*/
                   title: AppStringsConstants.sendMessage,
                   icon: Icons.email_outlined,
                   value: widget.customer.emailCount.toString(),
@@ -143,10 +140,10 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                 CommonDivider(),
                 AppSizes.h12,
                 CustomerTile(
-                  onTap: () => AppRoutes.pushNamed(
+                /*  onTap: () => AppRoutes.pushNamed(
                     RouteNames.logNotePage,
                     arguments: widget.customer.contactId.toInt(),
-                  ),
+                  ),*/
                   title: AppStringsConstants.logNote,
                   icon: Icons.edit_note,
                   value: widget.customer.commentCount.toString(),
@@ -155,10 +152,10 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                 CommonDivider(),
                 AppSizes.h12,
                 CustomerTile(
-                  onTap: () => AppRoutes.pushNamed(
+                /*  onTap: () => AppRoutes.pushNamed(
                     RouteNames.activityPage,
                     arguments: widget.customer.contactId.toInt(),
-                  ),
+                  ),*/
                   title: AppStringsConstants.activities,
                   icon: Icons.calendar_month,
                   value: widget.customer.activityCount.toString(),
@@ -173,4 +170,3 @@ class _CustomerDetailsState extends State<CustomerDetails> {
     );
   }
 }
-*/

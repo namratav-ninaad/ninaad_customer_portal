@@ -1,6 +1,6 @@
-import 'package:dayuri/core/enum/app_enum.dart';
-import 'package:dayuri/features/auth/data/model/country.dart';
-import 'package:dayuri/features/auth/data/model/state.dart';
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
+import 'package:ninaad_customer_portal/features/auth/data/model/country.dart';
+import 'package:ninaad_customer_portal/features/auth/data/model/state.dart';
 import 'package:equatable/equatable.dart';
 
 class RegisterState extends Equatable {
@@ -59,7 +59,6 @@ class RegisterState extends Equatable {
       selectedCountry: clearSelectedCountry
           ? null
           : (selectedCountry ?? this.selectedCountry),
-
       selectedState: clearSelectedState
           ? null
           : (selectedState ?? this.selectedState),

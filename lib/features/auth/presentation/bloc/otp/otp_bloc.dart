@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'package:dayuri/core/enum/app_enum.dart';
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dayuri/features/auth/domain/entities/verify_otp_submitted.dart';
-import 'package:dayuri/features/auth/domain/usecases/auth_usecase.dart';
+import 'package:ninaad_customer_portal/features/auth/domain/entities/verify_otp_submitted.dart';
+import 'package:ninaad_customer_portal/features/auth/domain/usecases/auth_usecase.dart';
 import 'otp_event.dart';
 import 'otp_state.dart';
 

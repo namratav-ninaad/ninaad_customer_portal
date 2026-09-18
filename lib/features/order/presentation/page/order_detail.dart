@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:yuri_sale/core/constants/app_sizes.dart';
-import 'package:yuri_sale/core/constants/app_strings.dart';
-import 'package:yuri_sale/core/theme/theme_color_extension.dart';
-import 'package:yuri_sale/core/widgets/common_appbar_widget.dart';
-import 'package:yuri_sale/core/widgets/common_text_widget.dart';
-import 'package:yuri_sale/features/order/data/model/order.dart';
-import 'package:yuri_sale/features/order/presentation/widget/customer_card.dart';
-import 'package:yuri_sale/features/order/presentation/widget/delivery_details.dart';
-import 'package:yuri_sale/features/order/presentation/widget/order_item.dart';
-import 'package:yuri_sale/features/order/presentation/widget/order_status_chip.dart';
-import 'package:yuri_sale/features/order/presentation/widget/order_summary.dart';
-import 'package:yuri_sale/features/order/presentation/widget/payment_method.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_appbar_widget.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_widget.dart';
+import 'package:ninaad_customer_portal/features/order/data/model/order.dart';
+import 'package:ninaad_customer_portal/features/order/presentation/widget/customer_card.dart';
+import 'package:ninaad_customer_portal/features/order/presentation/widget/delivery_details.dart';
+import 'package:ninaad_customer_portal/features/order/presentation/widget/order_item.dart';
+import 'package:ninaad_customer_portal/features/order/presentation/widget/order_status_chip.dart';
+import 'package:ninaad_customer_portal/features/order/presentation/widget/order_summary.dart';
+import 'package:ninaad_customer_portal/features/order/presentation/widget/payment_method.dart';
 
 class OrderDetail extends StatelessWidget {
   const OrderDetail({super.key, required this.orderModel});

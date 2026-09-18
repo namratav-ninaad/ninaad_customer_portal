@@ -1,25 +1,23 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dayuri/core/constants/app_colors.dart';
-import 'package:dayuri/core/constants/app_strings.dart';
-import 'package:dayuri/core/enum/app_enum.dart';
-import 'package:dayuri/core/toast/toast_helper.dart';
-import 'package:dayuri/core/widgets/date_helper.dart';
-import 'package:dayuri/features/customer/data/model/company.dart';
-import 'package:dayuri/features/customer/data/model/contact_tag.dart';
-import 'package:dayuri/features/customer/data/model/country.dart';
-import 'package:dayuri/features/customer/data/model/note.dart';
-import 'package:dayuri/features/customer/data/model/payment_terms.dart';
-import 'package:dayuri/features/customer/domain/entities/create_customer_data.dart';
-import 'package:dayuri/features/customer/domain/usecases/company_uc.dart';
-import 'package:dayuri/features/customer/domain/usecases/contact_tag_uc.dart';
-import 'package:dayuri/features/customer/domain/usecases/conutry_uc.dart';
-import 'package:dayuri/features/customer/domain/usecases/create_customer_uc.dart';
-import 'package:dayuri/features/customer/domain/usecases/payment_terms_uc.dart';
-import 'package:dayuri/features/customer/domain/usecases/state_uc.dart';
-import 'package:dayuri/features/customer/presentation/bloc/create_customer_bloc/create_customer_state.dart';
-import 'package:dayuri/features/customer/presentation/bloc/customer/customer_bloc.dart';
-import 'package:dayuri/features/customer/presentation/bloc/customer/customer_event.dart';
+import 'package:ninaad_customer_portal/core/constants/app_colors.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
+import 'package:ninaad_customer_portal/core/toast/toast_helper.dart';
+import 'package:ninaad_customer_portal/core/widgets/date_helper.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/company.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/contact_tag.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/country.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/note.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/payment_terms.dart';
+import 'package:ninaad_customer_portal/features/customer/domain/entities/create_customer_data.dart';
+import 'package:ninaad_customer_portal/features/customer/domain/usecases/company_uc.dart';
+import 'package:ninaad_customer_portal/features/customer/domain/usecases/contact_tag_uc.dart';
+import 'package:ninaad_customer_portal/features/customer/domain/usecases/conutry_uc.dart';
+import 'package:ninaad_customer_portal/features/customer/domain/usecases/create_customer_uc.dart';
+import 'package:ninaad_customer_portal/features/customer/domain/usecases/payment_terms_uc.dart';
+import 'package:ninaad_customer_portal/features/customer/domain/usecases/state_uc.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/bloc/create_customer_bloc/create_customer_state.dart';
 import 'create_customer_event.dart';
 
 class CreateCustomerBloc
@@ -29,7 +27,6 @@ class CreateCustomerBloc
   CompanyUseCase companyUseCase;
   PaymentTermsUseCase paymentTermsUseCase;
   ContactTagUseCase contactTagUseCase;
-  final CustomerBloc customerBloc;
   CountryUseCase countryUseCase;
   StateUseCase stateUseCase;
 
@@ -40,7 +37,6 @@ class CreateCustomerBloc
     required this.companyUseCase,
     required this.createCustomerUseCase,
     required this.paymentTermsUseCase,
-    required this.customerBloc,
   }) : super(CreateCustomerState()) {
     on<ChangeNoteType>(_onChangeNoteType);
     on<UpdateNoteText>(_onUpdateNoteText);
@@ -81,6 +77,7 @@ class CreateCustomerBloc
         selectedAddressType: event.addressType,
         clearSelectedCountry: true,
         clearSelectedState: true,
+        isCreateCustomer: false,
       ),
     );
   }
@@ -147,6 +144,7 @@ class CreateCustomerBloc
         paymentTerms: paymentTerms,
         contactTags: contactTags,
         countries: countries,
+        isCreateCustomer: false,
       ),
     );
   }
@@ -181,7 +179,13 @@ class CreateCustomerBloc
     CreateCustomerDataEvent event,
     Emitter<CreateCustomerState> emit,
   ) async {
-    emit(state.copyWith(state: ApiStatus.loading, errorMessage: null));
+    emit(
+      state.copyWith(
+        state: ApiStatus.loading,
+        isCreateCustomer: false,
+        errorMessage: null,
+      ),
+    );
 
     try {
       final result = await createCustomerUseCase.call(data: event.data);
@@ -195,13 +199,18 @@ class CreateCustomerBloc
           );
         },
         (_) {
-          emit(state.copyWith(state: ApiStatus.success));
-          customerBloc.add(FetchCustomerEvent(''));
+          emit(
+            state.copyWith(state: ApiStatus.success, isCreateCustomer: true),
+          );
         },
       );
     } catch (e) {
       emit(
-        state.copyWith(state: ApiStatus.failure, errorMessage: e.toString()),
+        state.copyWith(
+          state: ApiStatus.failure,
+          isCreateCustomer: false,
+          errorMessage: e.toString(),
+        ),
       );
     }
   }
@@ -210,7 +219,13 @@ class CreateCustomerBloc
     SelectCountryEvent event,
     Emitter<CreateCustomerState> emit,
   ) async {
-    emit(state.copyWith(selectedCountry: event.country));
+    emit(
+      state.copyWith(
+        selectedCountry: event.country,
+        states: [],
+        clearSelectedState: true,
+      ),
+    );
     add(FetchStateEvent(event.country.id.toInt()));
   }
 

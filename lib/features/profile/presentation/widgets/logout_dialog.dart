@@ -1,15 +1,15 @@
-import 'package:dayuri/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dayuri/core/constants/app_sizes.dart';
-import 'package:dayuri/core/constants/app_strings.dart';
-import 'package:dayuri/core/routes/app_routes.dart';
-import 'package:dayuri/core/widgets/common_button.dart';
-import 'package:dayuri/core/widgets/common_icon_widget.dart';
-import 'package:dayuri/core/widgets/common_outline_button.dart';
-import 'package:dayuri/core/widgets/common_text_widget.dart';
-import 'package:dayuri/features/profile/presentation/bloc/profile_bloc.dart';
-import 'package:dayuri/features/profile/presentation/bloc/profile_state.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/routes/app_routes.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_button.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_icon_widget.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_outline_button.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_widget.dart';
+import 'package:ninaad_customer_portal/features/profile/presentation/bloc/profile_bloc.dart';
+import 'package:ninaad_customer_portal/features/profile/presentation/bloc/profile_state.dart';
 
 class LogoutDialog extends StatelessWidget {
   final VoidCallback onLogout;

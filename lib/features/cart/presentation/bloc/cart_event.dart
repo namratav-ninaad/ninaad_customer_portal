@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:dayuri/features/cart/domain/entities/update_cart_qty.dart';
+import 'package:ninaad_customer_portal/features/cart/domain/entities/update_cart_qty.dart';
 
 abstract class CartEvent extends Equatable {
   const CartEvent();
@@ -12,8 +12,9 @@ class ResetCart extends CartEvent {}
 
 class FetchCart extends CartEvent {
   final bool? isFirstTimeLoading;
+  final bool? isProductQtySetData;
 
-  const FetchCart({this.isFirstTimeLoading});
+  const FetchCart({this.isFirstTimeLoading, this.isProductQtySetData});
 
   @override
   List<Object?> get props => [isFirstTimeLoading];
@@ -35,6 +36,16 @@ class DecreaseQuantity extends CartEvent {
 
   @override
   List<Object?> get props => [data];
+}
+
+class SetCartQuantity extends CartEvent {
+  final int productId;
+  final int quantity;
+
+  const SetCartQuantity({required this.productId, required this.quantity});
+
+  @override
+  List<Object?> get props => [productId, quantity];
 }
 
 class RemoveCart extends CartEvent {

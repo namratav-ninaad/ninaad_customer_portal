@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:yuri_sale/core/constants/app_strings.dart';
-import 'package:yuri_sale/core/error/exception.dart';
-import 'package:yuri_sale/core/error/failures.dart';
-import 'package:yuri_sale/core/model/common_response.dart';
-import 'package:yuri_sale/features/order/data/model/order.dart';
-import 'package:yuri_sale/features/order/domain/entities/search_order_data.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/error/exception.dart';
+import 'package:ninaad_customer_portal/core/error/failures.dart';
+import 'package:ninaad_customer_portal/core/model/common_response.dart';
+import 'package:ninaad_customer_portal/features/order/data/model/order.dart';
+import 'package:ninaad_customer_portal/features/order/domain/entities/search_order_data.dart';
 
 abstract class OrderRemoteDataSource {
   Future<List<OrderModel>> fetchOrders({required SearchOrderData data});

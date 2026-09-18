@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:dayuri/core/constants/app_sizes.dart';
-import 'package:dayuri/core/theme/theme_color_extension.dart';
-import 'package:dayuri/core/widgets/common_text_widget.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_widget.dart';
 
 class CommonDropdown<T> extends StatelessWidget {
   final String hintText;
@@ -42,37 +42,32 @@ class CommonDropdown<T> extends StatelessWidget {
         enabled: enabled,
         filled: true,
         fillColor: enabled
-            ? /*context.white*/ fillColor ?? context.greyFA
+            ? context.white /*fillColor ?? context.greyFA*/
             : context.greyF2,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppSizes.r12),
 
-          borderSide: BorderSide.none,
-
-          /* BorderSide(
+          borderSide: /*BorderSide.none,*/ BorderSide(
             color: enabled ? context.greyC8 : context.greyF2,
-          ),*/
+          ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppSizes.r12),
-          borderSide: BorderSide.none,
-          /* BorderSide(
+          borderSide: /*BorderSide.none,*/ BorderSide(
             color: enabled ? context.greyC8 : context.greyF2,
-          ),*/
+          ),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppSizes.r12),
-          borderSide: BorderSide.none,
-          /*BorderSide(
+          borderSide: /* BorderSide.none,*/ BorderSide(
             color: enabled ? context.greyC8 : context.greyF2,
-          ),*/
+          ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppSizes.r12),
-          borderSide: BorderSide.none,
-          /*BorderSide(
+          borderSide: /*BorderSide.none,*/ BorderSide(
             color: enabled ? context.greyC8 : context.greyF2,
-          ),*/
+          ),
         ),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: AppSizes.p16,

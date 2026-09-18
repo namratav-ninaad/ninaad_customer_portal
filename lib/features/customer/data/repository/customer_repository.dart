@@ -1,14 +1,14 @@
 import 'package:dartz/dartz.dart';
-import 'package:dayuri/core/error/failures.dart';
-import 'package:dayuri/features/customer/data/datasource/customer_remote_datasource.dart';
-import 'package:dayuri/features/customer/data/model/company.dart';
-import 'package:dayuri/features/customer/data/model/contact_tag.dart';
-import 'package:dayuri/features/customer/data/model/country.dart';
-import 'package:dayuri/features/customer/data/model/customer.dart';
-import 'package:dayuri/features/customer/data/model/payment_terms.dart';
-import 'package:dayuri/features/customer/data/model/state.dart';
-import 'package:dayuri/features/customer/domain/entities/create_customer_data.dart';
-import 'package:dayuri/features/customer/domain/entities/customer_filter_data.dart';
+import 'package:ninaad_customer_portal/core/error/failures.dart';
+import 'package:ninaad_customer_portal/features/customer/data/datasource/customer_remote_datasource.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/company.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/contact_tag.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/country.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/customer.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/payment_terms.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/state.dart';
+import 'package:ninaad_customer_portal/features/customer/domain/entities/create_customer_data.dart';
+import 'package:ninaad_customer_portal/features/customer/domain/entities/customer_filter_data.dart';
 
 abstract class CustomerRepository {
   Future<Either<Failure, List<CustomerModel>>> fetchCustomers({

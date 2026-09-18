@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:dayuri/core/constants/app_colors.dart';
-import 'package:dayuri/core/constants/app_sizes.dart';
-import 'package:dayuri/core/theme/theme_color_extension.dart';
-import 'package:dayuri/core/widgets/common_network_image.dart';
-import 'package:dayuri/core/widgets/common_text_widget.dart';
-import 'package:dayuri/features/customer/data/model/customer.dart';
-import 'package:dayuri/features/customer/presentation/widget/tag_widget.dart';
+import 'package:ninaad_customer_portal/core/constants/app_colors.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_network_image.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_widget.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/customer.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/widget/tag_widget.dart';
 
 class CustomerCard extends StatelessWidget {
   final CustomerModel customer;
@@ -40,9 +40,11 @@ class CustomerCard extends StatelessWidget {
       child: Ink(
         decoration: BoxDecoration(
           borderRadius: borderRadius,
-          color: color ?? context.greyFA,
-
-          boxShadow:
+          // color: color ?? context.greyFA,
+          border: boxShadow?.isEmpty == true
+              ? null
+              : Border.all(color: context.greyC8),
+          /* boxShadow:
               boxShadow ??
               [
                 BoxShadow(
@@ -50,7 +52,7 @@ class CustomerCard extends StatelessWidget {
                   offset: const Offset(0, 2),
                   blurRadius: 2,
                 ),
-              ],
+              ],*/
         ),
         child: InkWell(
           borderRadius: borderRadius,

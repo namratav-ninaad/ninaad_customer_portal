@@ -1,23 +1,23 @@
-import 'package:dayuri/core/enum/app_enum.dart';
-import 'package:dayuri/core/theme/theme_color_extension.dart';
-import 'package:dayuri/core/widgets/common_logo_image.dart';
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_logo_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dayuri/core/constants/app_sizes.dart';
-import 'package:dayuri/core/constants/app_strings.dart';
-import 'package:dayuri/core/constants/app_validators.dart';
-import 'package:dayuri/core/routes/app_routes.dart';
-import 'package:dayuri/core/routes/routes_name.dart';
-import 'package:dayuri/core/toast/toast_helper.dart';
-import 'package:dayuri/core/widgets/common_back_button.dart';
-import 'package:dayuri/core/widgets/common_button.dart';
-import 'package:dayuri/core/widgets/common_icon_widget.dart';
-import 'package:dayuri/core/widgets/common_text_field.dart';
-import 'package:dayuri/core/widgets/common_text_widget.dart';
-import 'package:dayuri/features/auth/presentation/bloc/reset_password/reset_password_bloc.dart';
-import 'package:dayuri/features/auth/presentation/bloc/reset_password/reset_password_event.dart';
-import 'package:dayuri/features/auth/presentation/bloc/reset_password/reset_password_state.dart';
-import 'package:dayuri/features/auth/presentation/widgets/icon_and_text_widget.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/constants/app_validators.dart';
+import 'package:ninaad_customer_portal/core/routes/app_routes.dart';
+import 'package:ninaad_customer_portal/core/routes/routes_name.dart';
+import 'package:ninaad_customer_portal/core/toast/toast_helper.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_back_button.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_button.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_icon_widget.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_field.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_widget.dart';
+import 'package:ninaad_customer_portal/features/auth/presentation/bloc/reset_password/reset_password_bloc.dart';
+import 'package:ninaad_customer_portal/features/auth/presentation/bloc/reset_password/reset_password_event.dart';
+import 'package:ninaad_customer_portal/features/auth/presentation/bloc/reset_password/reset_password_state.dart';
+import 'package:ninaad_customer_portal/features/auth/presentation/widgets/icon_and_text_widget.dart';
 
 
 class ResetPassword extends StatelessWidget {

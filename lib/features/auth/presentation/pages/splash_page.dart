@@ -1,10 +1,11 @@
-import 'package:dayuri/core/theme/theme_color_extension.dart';
-import 'package:dayuri/core/widgets/common_logo_image.dart';
+import 'package:ninaad_customer_portal/core/constants/app_colors.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_logo_image.dart';
 import 'package:flutter/material.dart';
-import 'package:dayuri/core/constants/app_images.dart';
-import 'package:dayuri/core/routes/app_routes.dart';
-import 'package:dayuri/core/routes/routes_name.dart';
-import 'package:dayuri/core/share_preference/share_pref_helper.dart';
+import 'package:ninaad_customer_portal/core/constants/app_images.dart';
+import 'package:ninaad_customer_portal/core/routes/app_routes.dart';
+import 'package:ninaad_customer_portal/core/routes/routes_name.dart';
+import 'package:ninaad_customer_portal/core/share_preference/share_pref_helper.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -51,7 +52,8 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             //App Logo
             CommonLogoImage(
-              imagePath: AppImagesConstants.blackLogoIcon,
+              imagePath: AppImagesConstants.logoIcon,
+              color: AppColorsConstants.white,
             ),
           ],
         ),

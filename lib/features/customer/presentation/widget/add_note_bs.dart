@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dayuri/core/constants/app_sizes.dart';
-import 'package:dayuri/core/constants/app_strings.dart';
-import 'package:dayuri/core/constants/app_validators.dart';
-import 'package:dayuri/core/enum/app_enum.dart';
-import 'package:dayuri/core/theme/theme_color_extension.dart';
-import 'package:dayuri/core/widgets/common_button.dart';
-import 'package:dayuri/core/widgets/common_text_field.dart';
-import 'package:dayuri/core/widgets/common_text_widget.dart';
-import 'package:dayuri/features/customer/data/model/note.dart';
-import 'package:dayuri/features/customer/presentation/bloc/create_customer_bloc/create_customer_bloc.dart';
-import 'package:dayuri/features/customer/presentation/bloc/create_customer_bloc/create_customer_event.dart';
-import 'package:dayuri/features/customer/presentation/bloc/create_customer_bloc/create_customer_state.dart';
-import 'package:dayuri/features/customer/presentation/widget/build_followup_section.dart';
-import 'package:dayuri/features/customer/presentation/widget/build_type_chip.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/constants/app_validators.dart';
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_button.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_field.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_widget.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/note.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/bloc/create_customer_bloc/create_customer_bloc.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/bloc/create_customer_bloc/create_customer_event.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/bloc/create_customer_bloc/create_customer_state.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/widget/build_followup_section.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/widget/build_type_chip.dart';
 
 class AddNoteBottomSheet extends StatefulWidget {
   final Function(Note) onNoteAdded;

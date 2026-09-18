@@ -1,6 +1,6 @@
-import 'package:dayuri/core/enum/app_enum.dart';
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
 import 'package:equatable/equatable.dart';
-import 'package:dayuri/features/auth/data/model/login_response_model.dart';
+import 'package:ninaad_customer_portal/features/auth/data/model/login_response_model.dart';
 
 class LoginState extends Equatable {
   final bool obscurePassword;

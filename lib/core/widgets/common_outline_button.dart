@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:dayuri/core/constants/app_sizes.dart';
-import 'package:dayuri/core/theme/theme_color_extension.dart';
-import 'package:dayuri/core/widgets/common_assets_image_widget.dart';
-import 'package:dayuri/core/widgets/common_circular_progress_indicator.dart';
-import 'package:dayuri/core/widgets/common_text_widget.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_assets_image_widget.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_circular_progress_indicator.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_widget.dart';
 
 class CommonOutlineButton extends StatelessWidget {
   const CommonOutlineButton({
@@ -51,41 +51,41 @@ class CommonOutlineButton extends StatelessWidget {
         height: height ?? AppSizes.s45,
         padding: padding,
         decoration: BoxDecoration(
-          // border: Border.all(color: borderColor ?? context.greyC8),
-          color: context.greyC8.withValues(alpha: 0.4),
+          border: Border.all(color: borderColor ?? context.greyC8),
+          // color: context.greyC8.withValues(alpha: 0.4),
           borderRadius: BorderRadius.circular(borderRadius ?? AppSizes.r12),
         ),
         alignment: Alignment.center,
         child: isLoading
             ? SizedBox(
-          width: circularSize ?? AppSizes.s20,
-          height: circularSize ?? AppSizes.s20,
-          child: CommonCircularProgressIndicator(
-            strokeWidth: strokeWidth,
-          ),
-        )
+                width: circularSize ?? AppSizes.s20,
+                height: circularSize ?? AppSizes.s20,
+                child: CommonCircularProgressIndicator(
+                  strokeWidth: strokeWidth,
+                ),
+              )
             : Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (imagePath != null) ...[
-              CommonAssetsImageWidget(
-                imagePath: imagePath!,
-                imageHeight: imageHeight ?? AppSizes.icon20,
-                imageWidth: imageWidth ?? AppSizes.icon20,
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (imagePath != null) ...[
+                    CommonAssetsImageWidget(
+                      imagePath: imagePath!,
+                      imageHeight: imageHeight ?? AppSizes.icon20,
+                      imageWidth: imageWidth ?? AppSizes.icon20,
+                    ),
+                    sizedBoxWidth ?? AppSizes.w12,
+                  ],
+                  CommonTextWidget(
+                    title: title,
+                    textAlign: TextAlign.center,
+                    overFlow: TextOverflow.ellipsis,
+                    color: textColor ?? context.black,
+                    fontSize: fontSize ?? AppSizes.f16,
+                    fontWeight: fontWeight ?? FontWeight.w400,
+                  ),
+                ],
               ),
-              sizedBoxWidth ?? AppSizes.w12,
-            ],
-            CommonTextWidget(
-              title: title,
-              textAlign: TextAlign.center,
-              overFlow: TextOverflow.ellipsis,
-              color: textColor ?? context.black,
-              fontSize: fontSize ?? AppSizes.f16,
-              fontWeight: fontWeight ?? FontWeight.w400,
-            ),
-          ],
-        ),
       ),
     );
   }

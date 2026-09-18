@@ -1,11 +1,11 @@
-import 'package:dayuri/core/enum/app_enum.dart';
-import 'package:dayuri/features/customer/data/model/company.dart';
-import 'package:dayuri/features/customer/data/model/contact_tag.dart';
-import 'package:dayuri/features/customer/data/model/country.dart';
-import 'package:dayuri/features/customer/data/model/note.dart';
-import 'package:dayuri/features/customer/data/model/payment_terms.dart';
-import 'package:dayuri/features/customer/data/model/state.dart';
-import 'package:dayuri/features/customer/domain/entities/create_customer_data.dart';
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/company.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/contact_tag.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/country.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/note.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/payment_terms.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/state.dart';
+import 'package:ninaad_customer_portal/features/customer/domain/entities/create_customer_data.dart';
 
 abstract class CreateCustomerEvent {}
 

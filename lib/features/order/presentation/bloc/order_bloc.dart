@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yuri_sale/features/order/domain/usecases/fetch_order_uc.dart';
-import 'package:yuri_sale/features/order/presentation/bloc/order_event.dart';
-import 'package:yuri_sale/features/order/presentation/bloc/order_state.dart';
+import 'package:ninaad_customer_portal/features/order/domain/usecases/fetch_order_uc.dart';
+import 'package:ninaad_customer_portal/features/order/presentation/bloc/order_event.dart';
+import 'package:ninaad_customer_portal/features/order/presentation/bloc/order_state.dart';
 
 class OrderBloc extends Bloc<OrderEvent, OrderState> {
   final FetchOrdersUseCase fetchOrdersUseCase;

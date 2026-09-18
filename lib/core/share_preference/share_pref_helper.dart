@@ -1,5 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:dayuri/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
 
 class SharedPrefHelper {
   static Future<SharedPreferences> get _prefs async =>
@@ -58,7 +58,7 @@ class SharedPrefHelper {
   /// User Login
   static Future<bool> isLoggedIn() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.containsKey(AppStringsConstants.accessToken);
+    return prefs.containsKey(AppStringsConstants.loginResponse);
   }
 
   static Future<void> remove(String key) async {

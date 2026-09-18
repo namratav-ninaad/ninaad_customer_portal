@@ -1,24 +1,23 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yuri_sale/core/constants/app_sizes.dart';
-import 'package:yuri_sale/core/constants/app_strings.dart';
-import 'package:yuri_sale/core/constants/app_validators.dart';
-import 'package:yuri_sale/core/routes/app_routes.dart';
-import 'package:yuri_sale/core/routes/routes_name.dart';
-import 'package:yuri_sale/core/share_preference/share_pref_helper.dart';
-import 'package:yuri_sale/core/theme/theme_color_extension.dart';
-import 'package:yuri_sale/core/toast/toast_helper.dart';
-import 'package:yuri_sale/core/widgets/common_appbar_widget.dart';
-import 'package:yuri_sale/core/widgets/common_button.dart';
-import 'package:yuri_sale/core/widgets/common_text_field.dart';
-import 'package:yuri_sale/features/auth/data/model/login_response_model.dart';
-import 'package:yuri_sale/features/quote/domain/entity/submit_rfq_data.dart';
-import 'package:yuri_sale/features/quote/presentation/bloc/quote_bloc.dart';
-import 'package:yuri_sale/features/quote/presentation/bloc/quote_event.dart';
-import 'package:yuri_sale/features/quote/presentation/bloc/quote_state.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/constants/app_validators.dart';
+import 'package:ninaad_customer_portal/core/routes/app_routes.dart';
+import 'package:ninaad_customer_portal/core/routes/routes_name.dart';
+import 'package:ninaad_customer_portal/core/share_preference/share_pref_helper.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/toast/toast_helper.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_appbar_widget.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_button.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_field.dart';
+import 'package:ninaad_customer_portal/features/auth/data/model/login_response_model.dart';
+import 'package:ninaad_customer_portal/features/quote/domain/entity/submit_rfq_data.dart';
+import 'package:ninaad_customer_portal/features/quote/presentation/bloc/quote_bloc.dart';
+import 'package:ninaad_customer_portal/features/quote/presentation/bloc/quote_event.dart';
+import 'package:ninaad_customer_portal/features/quote/presentation/bloc/quote_state.dart';
 
 class RequestToQuotePage extends StatefulWidget {
   const RequestToQuotePage({super.key});
@@ -102,10 +101,10 @@ class _RequestToQuotePageState extends State<RequestToQuotePage> {
                   CommonTextFormField(
                     labelText: AppStringsConstants.phoneNumber,
                     keyboardType: TextInputType.phone,
-                    maxLength: 9,
+                    // maxLength: 9,
                     controller: phoneController,
                     prefixIcon: Icons.call,
-                    validator: AppValidators.phone,
+                    // validator: AppValidators.phone,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   ),
                   AppSizes.h12,

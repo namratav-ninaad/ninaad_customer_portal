@@ -1,8 +1,8 @@
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
-import 'package:dayuri/core/enum/app_enum.dart';
-import 'package:dayuri/features/customer/domain/entities/customer_filter_data.dart';
-import 'package:dayuri/features/customer/domain/usecases/customer_uc.dart';
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
+import 'package:ninaad_customer_portal/features/customer/domain/entities/customer_filter_data.dart';
+import 'package:ninaad_customer_portal/features/customer/domain/usecases/customer_uc.dart';
 
 import 'customer_event.dart';
 import 'customer_state.dart';

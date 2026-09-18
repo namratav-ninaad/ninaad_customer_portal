@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:dayuri/features/profile/data/model/profile_model.dart';
+import 'package:ninaad_customer_portal/features/profile/data/model/profile_model.dart';
 
 class ProfileState extends Equatable {
   final String oldPassword;

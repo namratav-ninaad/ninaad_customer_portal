@@ -1,8 +1,8 @@
-import 'package:dayuri/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:dayuri/core/constants/app_sizes.dart';
-import 'package:dayuri/core/widgets/common_back_button.dart';
-import 'package:dayuri/core/widgets/common_text_widget.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_back_button.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_widget.dart';
 
 class CommonAppbarWidget extends StatelessWidget
     implements PreferredSizeWidget {

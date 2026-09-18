@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:dayuri/core/error/failures.dart';
-import 'package:dayuri/features/profile/data/datasource/profile_remote_data_source.dart';
-import 'package:dayuri/features/profile/data/model/profile_model.dart';
-import 'package:dayuri/features/profile/domain/entities/change_password_data.dart';
-import 'package:dayuri/features/profile/domain/entities/update_profile_data.dart';
+import 'package:ninaad_customer_portal/core/error/failures.dart';
+import 'package:ninaad_customer_portal/features/profile/data/datasource/profile_remote_data_source.dart';
+import 'package:ninaad_customer_portal/features/profile/data/model/profile_model.dart';
+import 'package:ninaad_customer_portal/features/profile/domain/entities/change_password_data.dart';
+import 'package:ninaad_customer_portal/features/profile/domain/entities/update_profile_data.dart';
 
 abstract class ProfileRepository {
   Future<Either<Failure, String>> changePassword({

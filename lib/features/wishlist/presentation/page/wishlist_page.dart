@@ -1,11 +1,12 @@
-import 'package:dayuri/core/constants/app_sizes.dart';
-import 'package:dayuri/core/constants/app_strings.dart';
-import 'package:dayuri/core/theme/theme_color_extension.dart';
-import 'package:dayuri/core/widgets/common_appbar_widget.dart';
-import 'package:dayuri/core/widgets/common_divider.dart';
-import 'package:dayuri/core/widgets/common_text_widget.dart';
-import 'package:dayuri/features/wishlist/presentation/widget/clear_dialog.dart';
-import 'package:dayuri/features/wishlist/presentation/widget/wishlist_item.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_appbar_widget.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_divider.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_field.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_widget.dart';
+import 'package:ninaad_customer_portal/features/wishlist/presentation/widget/clear_dialog.dart';
+import 'package:ninaad_customer_portal/features/wishlist/presentation/widget/wishlist_item.dart';
 import 'package:flutter/material.dart';
 
 class Product {
@@ -93,6 +94,14 @@ class _WishlistPageState extends State<WishlistPage> {
     ),
   ];
 
+  final TextEditingController searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
   void showClearDialog() {
     showDialog(
       context: context,
@@ -123,11 +132,23 @@ class _WishlistPageState extends State<WishlistPage> {
           ),
           AppSizes.w24,
         ],
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(AppSizes.s80),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: AppSizes.p24),
+            child: CommonTextFormField(
+              controller: searchController,
+              labelText: AppStringsConstants.searchWishlist,
+              prefixIcon: Icons.search_outlined,
+              onFieldSubmitted: (value) {},
+            ),
+          ),
+        ),
       ),
 
       body: ListView.separated(
         shrinkWrap: true,
-        padding: const EdgeInsets.symmetric(horizontal: AppSizes.p24),
+        padding: const EdgeInsets.all(AppSizes.p24),
         itemCount: products.length,
         separatorBuilder: (context, index) {
           return CommonDivider();

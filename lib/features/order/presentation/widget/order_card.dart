@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:yuri_sale/core/constants/app_colors.dart';
-import 'package:yuri_sale/core/constants/app_sizes.dart';
-import 'package:yuri_sale/core/theme/theme_color_extension.dart';
-import 'package:yuri_sale/core/widgets/common_icon_widget.dart';
-import 'package:yuri_sale/core/widgets/common_text_widget.dart';
-import 'package:yuri_sale/core/widgets/date_helper.dart';
-import 'package:yuri_sale/features/order/data/model/order.dart';
-import 'package:yuri_sale/features/order/presentation/widget/order_status_chip.dart';
+import 'package:ninaad_customer_portal/core/constants/app_colors.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_icon_widget.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_widget.dart';
+import 'package:ninaad_customer_portal/core/widgets/date_helper.dart';
+import 'package:ninaad_customer_portal/features/order/data/model/order.dart';
+import 'package:ninaad_customer_portal/features/order/presentation/widget/order_status_chip.dart';
 
 class OrderCard extends StatelessWidget {
   const OrderCard({super.key, required this.order, this.onTap});
@@ -23,15 +23,15 @@ class OrderCard extends StatelessWidget {
         padding: const EdgeInsets.all(AppSizes.p12),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppSizes.r12),
-          // border: Border.all(color: context.greyC8),
-          color: context.greyFA,
-          boxShadow: [
+           border: Border.all(color: context.greyC8),
+          // color: context.greyFA,
+         /* boxShadow: [
             BoxShadow(
               color: context.black.withValues(alpha: 0.1),
               offset: Offset(0, 2),
               blurRadius: 2,
             ),
-          ],
+          ],*/
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,7 +82,7 @@ class OrderCard extends StatelessWidget {
                   title: '${order.currency} ${order.totalAmount}',
                   fontWeight: FontWeight.w700,
                   fontSize: AppSizes.f14,
-                  color: AppColorsConstants.primaryRedColor,
+                  color: AppColorsConstants.primaryBlueColor,
                 ),
 
                 const CommonIconWidget(

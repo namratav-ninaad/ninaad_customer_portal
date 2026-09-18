@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yuri_sale/core/constants/app_sizes.dart';
-import 'package:yuri_sale/core/widgets/common_text_widget.dart';
-import 'package:yuri_sale/features/order/data/model/order.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_widget.dart';
+import 'package:ninaad_customer_portal/features/order/data/model/order.dart';
 
 class OrderProductItem extends StatelessWidget {
   const OrderProductItem({

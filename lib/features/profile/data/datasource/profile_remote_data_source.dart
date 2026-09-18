@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:dayuri/core/constants/app_strings.dart';
-import 'package:dayuri/core/error/exception.dart';
-import 'package:dayuri/core/error/failures.dart';
-import 'package:dayuri/core/model/common_response.dart';
-import 'package:dayuri/features/profile/data/model/profile_model.dart';
-import 'package:dayuri/features/profile/domain/entities/change_password_data.dart';
-import 'package:dayuri/features/profile/domain/entities/update_profile_data.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/error/exception.dart';
+import 'package:ninaad_customer_portal/core/error/failures.dart';
+import 'package:ninaad_customer_portal/core/model/common_response.dart';
+import 'package:ninaad_customer_portal/features/profile/data/model/profile_model.dart';
+import 'package:ninaad_customer_portal/features/profile/domain/entities/change_password_data.dart';
+import 'package:ninaad_customer_portal/features/profile/domain/entities/update_profile_data.dart';
 
 abstract class ProfileRemoteDataSource {
   Future<String> changePassword({required ChangePasswordData data});

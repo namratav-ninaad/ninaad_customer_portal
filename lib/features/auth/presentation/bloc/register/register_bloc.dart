@@ -1,6 +1,6 @@
-import 'package:dayuri/core/constants/app_strings.dart';
-import 'package:dayuri/core/enum/app_enum.dart';
-import 'package:dayuri/features/auth/domain/usecases/auth_usecase.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
+import 'package:ninaad_customer_portal/features/auth/domain/usecases/auth_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'register_event.dart';
@@ -133,7 +133,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
             ),
           );
         },
-        (loginData) async {
+        (r) async {
           emit(
             state.copyWith(
               status: ApiStatus.success,

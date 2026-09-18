@@ -1,12 +1,12 @@
-import 'package:dayuri/core/constants/app_sizes.dart';
-import 'package:dayuri/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
 import 'package:flutter/material.dart';
 
 class PageIndicator extends StatelessWidget {
   final int itemCount;
   final int selectIndex;
 
-  const PageIndicator({super.key, this.itemCount = 4, required this.selectIndex});
+  const PageIndicator({super.key, this.itemCount = 3, required this.selectIndex});
 
   @override
   Widget build(BuildContext context) {

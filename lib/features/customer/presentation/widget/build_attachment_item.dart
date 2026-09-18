@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:dayuri/core/constants/app_colors.dart';
-import 'package:dayuri/core/constants/app_sizes.dart';
-import 'package:dayuri/core/constants/app_strings.dart';
-import 'package:dayuri/core/theme/theme_color_extension.dart';
-import 'package:dayuri/core/widgets/common_icon_widget.dart';
-import 'package:dayuri/core/widgets/common_text_widget.dart';
-import 'package:dayuri/features/customer/domain/entities/create_customer_data.dart';
+import 'package:ninaad_customer_portal/core/constants/app_colors.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_icon_widget.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_widget.dart';
+import 'package:ninaad_customer_portal/features/customer/domain/entities/create_customer_data.dart';
 
 class BuildAttachmentItem extends StatelessWidget {
   final String title;
@@ -30,8 +30,8 @@ class BuildAttachmentItem extends StatelessWidget {
       padding: EdgeInsets.all(AppSizes.p12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppSizes.r12),
-        // border: Border.all(color: context.greyC8),
-        color: context.greyFA,
+        border: Border.all(color: context.greyC8),
+        // color: context.greyFA,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

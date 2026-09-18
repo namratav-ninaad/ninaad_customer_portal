@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:dayuri/core/constants/app_strings.dart';
-import 'package:dayuri/core/share_preference/share_pref_helper.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/share_preference/share_pref_helper.dart';
 
 class ThemeRepository {
   Future<void> saveTheme(ThemeMode mode) async {

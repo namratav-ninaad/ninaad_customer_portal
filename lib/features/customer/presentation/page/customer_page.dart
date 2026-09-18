@@ -1,20 +1,20 @@
-import 'package:dayuri/core/enum/app_enum.dart';
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dayuri/core/constants/app_sizes.dart';
-import 'package:dayuri/core/constants/app_strings.dart';
-import 'package:dayuri/core/routes/app_routes.dart';
-import 'package:dayuri/core/routes/routes_name.dart';
-import 'package:dayuri/core/theme/theme_color_extension.dart';
-import 'package:dayuri/core/widgets/common_appbar_widget.dart';
-import 'package:dayuri/core/widgets/common_circular_progress_indicator.dart';
-import 'package:dayuri/core/widgets/common_empty_text.dart';
-import 'package:dayuri/core/widgets/common_icon_widget.dart';
-import 'package:dayuri/core/widgets/common_text_field.dart';
-import 'package:dayuri/features/customer/presentation/bloc/customer/customer_bloc.dart';
-import 'package:dayuri/features/customer/presentation/bloc/customer/customer_event.dart';
-import 'package:dayuri/features/customer/presentation/bloc/customer/customer_state.dart';
-import 'package:dayuri/features/customer/presentation/widget/customer_card.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/routes/app_routes.dart';
+import 'package:ninaad_customer_portal/core/routes/routes_name.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_appbar_widget.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_circular_progress_indicator.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_empty_text.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_icon_widget.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_field.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/bloc/customer/customer_bloc.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/bloc/customer/customer_event.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/bloc/customer/customer_state.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/widget/customer_card.dart';
 
 class CustomerPage extends StatefulWidget {
   const CustomerPage({super.key, this.backButtonShow = false});
@@ -70,8 +70,8 @@ class _CustomerPageState extends State<CustomerPage> {
                   child: Container(
                     padding: EdgeInsets.all(AppSizes.p8),
                     decoration: BoxDecoration(
-                      // border: Border.all(color: context.greyC8),
-                      color: context.greyFA,
+                      border: Border.all(color: context.greyC8),
+                      // color: context.greyFA,
                       borderRadius: BorderRadius.circular(AppSizes.r12),
                     ),
                     child: CommonIconWidget(
@@ -102,10 +102,10 @@ class _CustomerPageState extends State<CustomerPage> {
                     itemCount: state.customers.length,
                     itemBuilder: (context, index) => CustomerCard(
                       customer: state.customers[index],
-                    /*  onTap: () => AppRoutes.pushNamed(
+                      onTap: () => AppRoutes.pushNamed(
                         RouteNames.customerDetail,
                         arguments: state.customers[index],
-                      ),*/
+                      ),
                     ),
                     padding: EdgeInsets.fromLTRB(
                       AppSizes.p24,

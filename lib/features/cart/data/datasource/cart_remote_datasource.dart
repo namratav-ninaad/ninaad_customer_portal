@@ -1,10 +1,10 @@
-import 'package:dayuri/core/error/exception.dart';
-import 'package:dayuri/features/cart/data/model/cart.dart';
+import 'package:ninaad_customer_portal/core/error/exception.dart';
+import 'package:ninaad_customer_portal/features/cart/data/model/cart.dart';
 import 'package:dio/dio.dart';
-import 'package:dayuri/core/constants/app_strings.dart';
-import 'package:dayuri/core/error/failures.dart';
-import 'package:dayuri/core/model/common_response.dart';
-import 'package:dayuri/features/cart/domain/entities/update_cart_qty.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/error/failures.dart';
+import 'package:ninaad_customer_portal/core/model/common_response.dart';
+import 'package:ninaad_customer_portal/features/cart/domain/entities/update_cart_qty.dart';
 
 abstract class CartRemoteDatasource {
   Future<CartModel> fetchCart();

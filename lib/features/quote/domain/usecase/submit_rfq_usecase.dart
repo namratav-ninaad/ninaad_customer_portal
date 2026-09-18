@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:yuri_sale/core/error/failures.dart';
-import 'package:yuri_sale/features/quote/data/repository/quote_repository.dart';
-import 'package:yuri_sale/features/quote/domain/entity/submit_rfq_data.dart';
+import 'package:ninaad_customer_portal/core/error/failures.dart';
+import 'package:ninaad_customer_portal/features/quote/data/repository/quote_repository.dart';
+import 'package:ninaad_customer_portal/features/quote/domain/entity/submit_rfq_data.dart';
 
 class SubmitRfqUseCase {
   final QuoteRepository repository;

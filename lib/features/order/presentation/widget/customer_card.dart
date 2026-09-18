@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yuri_sale/core/constants/app_sizes.dart';
-import 'package:yuri_sale/core/theme/theme_color_extension.dart';
-import 'package:yuri_sale/core/widgets/common_text_widget.dart';
-import 'package:yuri_sale/core/widgets/date_helper.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_widget.dart';
+import 'package:ninaad_customer_portal/core/widgets/date_helper.dart';
 
 class CustomerCard extends StatelessWidget {
   const CustomerCard({
@@ -28,8 +28,8 @@ class CustomerCard extends StatelessWidget {
       padding: EdgeInsets.all(AppSizes.p12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppSizes.r12),
-        // border: Border.all(color: context.greyC8),
-        color: context.greyFA,
+        border: Border.all(color: context.greyC8),
+        // color: context.greyFA,
       ),
       child: Column(
         children: [
@@ -44,7 +44,7 @@ class CustomerCard extends StatelessWidget {
                 ),
               ),
               AppSizes.w16,
-              orderStatus
+              orderStatus,
               // TextChip(color: AppColorsConstants.green, title: orderStatus),
             ],
           ),

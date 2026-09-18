@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yuri_sale/core/constants/app_sizes.dart';
-import 'package:yuri_sale/core/enum/app_enum.dart';
-import 'package:yuri_sale/core/widgets/common_text_widget.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_widget.dart';
 
 class OrderStatusChip extends StatelessWidget {
   const OrderStatusChip({super.key, required this.status});

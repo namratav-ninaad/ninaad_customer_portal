@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yuri_sale/core/constants/app_sizes.dart';
-import 'package:yuri_sale/core/constants/app_strings.dart';
-import 'package:yuri_sale/core/enum/app_enum.dart';
-import 'package:yuri_sale/core/routes/app_routes.dart';
-import 'package:yuri_sale/core/theme/theme_color_extension.dart';
-import 'package:yuri_sale/core/widgets/common_text_widget.dart';
-import 'package:yuri_sale/features/order/domain/entities/search_order_data.dart';
-import 'package:yuri_sale/features/order/presentation/bloc/order_bloc.dart';
-import 'package:yuri_sale/features/order/presentation/bloc/order_event.dart';
-import 'package:yuri_sale/features/order/presentation/bloc/order_state.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
+import 'package:ninaad_customer_portal/core/routes/app_routes.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_widget.dart';
+import 'package:ninaad_customer_portal/features/order/domain/entities/search_order_data.dart';
+import 'package:ninaad_customer_portal/features/order/presentation/bloc/order_bloc.dart';
+import 'package:ninaad_customer_portal/features/order/presentation/bloc/order_event.dart';
+import 'package:ninaad_customer_portal/features/order/presentation/bloc/order_state.dart';
 
 class OrderFilterBottomSheet extends StatelessWidget {
   const OrderFilterBottomSheet({super.key, this.partnerId});
@@ -53,7 +53,7 @@ class OrderFilterBottomSheet extends StatelessWidget {
                       title: AppStringsConstants.clear,
                       fontSize: AppSizes.f12,
                       fontWeight: FontWeight.w700,
-                      color: context.primaryRedColor,
+                      color: context.primaryBlueColor,
                     ),
                   ),
                 ],
@@ -81,7 +81,7 @@ class OrderFilterBottomSheet extends StatelessWidget {
                   children: OrderStatus.values.map((status) {
                     return RadioListTile<OrderStatus>(
                       value: status,
-                      activeColor: context.primaryRedColor,
+                      activeColor: context.primaryBlueColor,
                       title: CommonTextWidget(
                         title: status.label,
                         fontSize: AppSizes.f14,

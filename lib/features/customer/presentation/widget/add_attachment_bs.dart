@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:dayuri/core/constants/app_sizes.dart';
-import 'package:dayuri/core/constants/app_strings.dart';
-import 'package:dayuri/core/routes/app_routes.dart';
-import 'package:dayuri/core/theme/theme_color_extension.dart';
-import 'package:dayuri/core/widgets/common_button.dart';
-import 'package:dayuri/core/widgets/common_outline_button.dart';
-import 'package:dayuri/core/widgets/common_text_widget.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/routes/app_routes.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_button.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_outline_button.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_widget.dart';
 
 class AddAttachmentBottomSheet extends StatelessWidget {
   final String title;
@@ -41,13 +41,17 @@ class AddAttachmentBottomSheet extends StatelessWidget {
           CommonButton(
             title: AppStringsConstants.browseFiles,
             onTap: () async {
-              final result = await FilePicker.platform.pickFiles(
-                allowMultiple: true,
+              final result = await FilePicker.pickFiles(
                 type: FileType.custom,
                 allowedExtensions: ['pdf', 'jpg', 'jpeg', 'png', 'doc', 'docx'],
               );
-              if (result != null) {
-                final paths = result.paths.whereType<String>().toList();
+
+              if (result.isNotEmpty) {
+                final paths = result
+                    .map((file) => file.path)
+                    .whereType<String>()
+                    .toList();
+
                 onFilesSelected(paths);
                 AppRoutes.pop();
               }
@@ -69,7 +73,7 @@ class AddAttachmentBottomSheet extends StatelessWidget {
           AppSizes.h12,
           CommonOutlineButton(
             title: 'Cancel',
-            onTap: () =>  AppRoutes.pop(),
+            onTap: () => AppRoutes.pop(),
             textColor: context.grey89,
             borderColor: context.greyC8,
           ),

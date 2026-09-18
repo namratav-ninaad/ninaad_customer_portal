@@ -1,9 +1,11 @@
-import 'package:dayuri/core/enum/app_enum.dart';
+import 'dart:convert';
+
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dayuri/core/constants/app_strings.dart';
-import 'package:dayuri/core/share_preference/share_pref_helper.dart';
-import 'package:dayuri/features/auth/domain/entities/login_data.dart';
-import 'package:dayuri/features/auth/domain/usecases/auth_usecase.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/share_preference/share_pref_helper.dart';
+import 'package:ninaad_customer_portal/features/auth/domain/entities/login_data.dart';
+import 'package:ninaad_customer_portal/features/auth/domain/usecases/auth_usecase.dart';
 import 'login_event.dart';
 import 'login_state.dart';
 
@@ -30,31 +32,25 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     result.fold(
       (failure) {
-        emit(state.copyWith(state: ApiStatus.failure, errorMessage: failure.message));
-      },
-      (loginData) async {
         emit(
           state.copyWith(
-            state: ApiStatus.success,
-            loginData: loginData,
+            state: ApiStatus.failure,
+            errorMessage: failure.message,
           ),
         );
-        // Save Access Token
+      },
+      (loginData) async {
+        emit(state.copyWith(state: ApiStatus.success, loginData: loginData));
+        // Save login data
         await SharedPrefHelper.setString(
-          AppStringsConstants.accessToken,
-          loginData.accessToken,
+          AppStringsConstants.loginResponse,
+          jsonEncode(loginData.toJson()),
         );
 
         // Save Remember Me Status
         await SharedPrefHelper.setBool(
           AppStringsConstants.rememberMeKey,
           event.rememberMe,
-        );
-
-        // Save Company Id
-        await SharedPrefHelper.setInt(
-          AppStringsConstants.companyId,
-          loginData.companyId,
         );
 
         if (event.rememberMe) {
@@ -69,7 +65,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           );
         } else {
           await SharedPrefHelper.remove(AppStringsConstants.rememberEmail);
-
           await SharedPrefHelper.remove(AppStringsConstants.rememberPassword);
         }
       },

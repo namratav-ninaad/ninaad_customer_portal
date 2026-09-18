@@ -1,4 +1,4 @@
-package com.example.dayuri
+package com.ninaadcustomer.portal
 
 import io.flutter.embedding.android.FlutterActivity
 

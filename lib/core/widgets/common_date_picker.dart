@@ -1,4 +1,4 @@
-import 'package:dayuri/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
 import 'package:flutter/material.dart';
 
 class CommonDatePicker {

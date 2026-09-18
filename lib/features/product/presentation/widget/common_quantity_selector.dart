@@ -1,9 +1,10 @@
+import 'package:ninaad_customer_portal/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yuri_sale/core/constants/app_sizes.dart';
-import 'package:yuri_sale/core/theme/theme_color_extension.dart';
-import 'package:yuri_sale/core/widgets/common_icon_widget.dart';
-import 'package:yuri_sale/core/widgets/common_text_field.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_icon_widget.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_field.dart';
 
 class CommonQuantitySelector extends StatefulWidget {
   final int quantity;
@@ -30,7 +31,7 @@ class CommonQuantitySelector extends StatefulWidget {
     this.height,
     this.padding,
     this.radius,
-    this.minQuantity = 1,
+    this.minQuantity = 0,
     this.maxQuantity,
   });
 
@@ -45,7 +46,6 @@ class _CommonQuantitySelectorState extends State<CommonQuantitySelector> {
   @override
   void initState() {
     super.initState();
-    debugPrint('data--${widget.quantity}');
 
     _controller = TextEditingController(text: widget.quantity.toString());
 
@@ -126,7 +126,7 @@ class _CommonQuantitySelectorState extends State<CommonQuantitySelector> {
             onTap: isMinQuantity ? null : widget.onDecrease,
             icon: Icons.remove,
             size: AppSizes.icon24,
-            color: isMinQuantity ? context.greyC8 : context.black,
+            color: /*isMinQuantity ? context.greyC8 : */context.black,
           ),
 
           // QUANTITY TEXT FIELD
@@ -135,6 +135,7 @@ class _CommonQuantitySelectorState extends State<CommonQuantitySelector> {
               controller: _controller,
               focusNode: _focusNode,
               filled: false,
+              borderColor: AppColorsConstants.transparent,
               textAlign: TextAlign.center,
               keyboardType: TextInputType.number,
               textInputAction: TextInputAction.done,

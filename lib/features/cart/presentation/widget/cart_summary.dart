@@ -1,9 +1,9 @@
-import 'package:dayuri/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:dayuri/core/constants/app_sizes.dart';
-import 'package:dayuri/core/constants/app_strings.dart';
-import 'package:dayuri/core/widgets/common_divider.dart';
-import 'package:dayuri/features/cart/presentation/widget/summary_row.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_divider.dart';
+import 'package:ninaad_customer_portal/features/cart/presentation/widget/summary_row.dart';
 
 class CartSummary extends StatelessWidget {
   final String subtotal;

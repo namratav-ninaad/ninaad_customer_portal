@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:yuri_sale/core/constants/app_strings.dart';
-import 'package:yuri_sale/core/error/exception.dart';
-import 'package:yuri_sale/core/error/failures.dart';
-import 'package:yuri_sale/core/model/common_response.dart';
-import 'package:yuri_sale/features/quote/domain/entity/submit_rfq_data.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/error/exception.dart';
+import 'package:ninaad_customer_portal/core/error/failures.dart';
+import 'package:ninaad_customer_portal/core/model/common_response.dart';
+import 'package:ninaad_customer_portal/features/quote/domain/entity/submit_rfq_data.dart';
 
 abstract class QuoteRemoteDataSource {
   Future<String> submitRfq({required SubmitRfqData data});

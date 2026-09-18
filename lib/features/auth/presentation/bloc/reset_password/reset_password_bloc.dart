@@ -1,7 +1,7 @@
-import 'package:dayuri/core/enum/app_enum.dart';
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dayuri/features/auth/domain/entities/reset_password_submitted.dart';
-import 'package:dayuri/features/auth/domain/usecases/auth_usecase.dart';
+import 'package:ninaad_customer_portal/features/auth/domain/entities/reset_password_submitted.dart';
+import 'package:ninaad_customer_portal/features/auth/domain/usecases/auth_usecase.dart';
 import 'reset_password_event.dart';
 import 'reset_password_state.dart';
 

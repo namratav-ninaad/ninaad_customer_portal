@@ -1,15 +1,15 @@
-import 'package:dayuri/features/auth/data/model/country.dart';
-import 'package:dayuri/features/auth/data/model/state.dart';
-import 'package:dayuri/features/auth/domain/entities/register_data.dart';
+import 'package:ninaad_customer_portal/features/auth/data/model/country.dart';
+import 'package:ninaad_customer_portal/features/auth/data/model/state.dart';
+import 'package:ninaad_customer_portal/features/auth/domain/entities/register_data.dart';
 import 'package:dio/dio.dart';
-import 'package:dayuri/core/constants/app_strings.dart';
-import 'package:dayuri/core/error/exception.dart';
-import 'package:dayuri/core/error/failures.dart';
-import 'package:dayuri/core/model/common_response.dart';
-import 'package:dayuri/features/auth/data/model/login_response_model.dart';
-import 'package:dayuri/features/auth/domain/entities/login_data.dart';
-import 'package:dayuri/features/auth/domain/entities/reset_password_submitted.dart';
-import 'package:dayuri/features/auth/domain/entities/verify_otp_submitted.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/error/exception.dart';
+import 'package:ninaad_customer_portal/core/error/failures.dart';
+import 'package:ninaad_customer_portal/core/model/common_response.dart';
+import 'package:ninaad_customer_portal/features/auth/data/model/login_response_model.dart';
+import 'package:ninaad_customer_portal/features/auth/domain/entities/login_data.dart';
+import 'package:ninaad_customer_portal/features/auth/domain/entities/reset_password_submitted.dart';
+import 'package:ninaad_customer_portal/features/auth/domain/entities/verify_otp_submitted.dart';
 
 abstract class AuthRemoteDataSource {
   Future<LoginModel> login({required LoginData data});
@@ -84,7 +84,10 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<List<StateModel>> fetchStates({required int countryId}) async {
     try {
-      final res = await dio.get(AppStringsConstants.stateURl);
+      final res = await dio.get(
+        AppStringsConstants.stateURl,
+        queryParameters: {'country_id': countryId},
+      );
 
       return CommonResponse<List<StateModel>>.fromJson(res.data, (json) {
         if (json is Map<String, dynamic> && json['states'] != null) {
@@ -98,7 +101,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       throw ServerException(getErrorMessage(e));
     }
   }
-
 
   @override
   Future<String> register({required RegisterData data}) async {

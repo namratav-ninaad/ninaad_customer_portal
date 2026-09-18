@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:dayuri/core/error/failures.dart';
-import 'package:dayuri/features/cart/data/datasource/cart_remote_datasource.dart';
-import 'package:dayuri/features/cart/data/model/cart.dart';
-import 'package:dayuri/features/cart/domain/entities/update_cart_qty.dart';
+import 'package:ninaad_customer_portal/core/error/failures.dart';
+import 'package:ninaad_customer_portal/features/cart/data/datasource/cart_remote_datasource.dart';
+import 'package:ninaad_customer_portal/features/cart/data/model/cart.dart';
+import 'package:ninaad_customer_portal/features/cart/domain/entities/update_cart_qty.dart';
 
 abstract class CartRepository {
   Future<Either<Failure, CartModel>> fetchCart();

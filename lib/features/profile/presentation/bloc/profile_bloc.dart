@@ -1,17 +1,15 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dayuri/core/constants/app_strings.dart';
-import 'package:dayuri/core/routes/app_routes.dart';
-import 'package:dayuri/core/routes/routes_name.dart';
-import 'package:dayuri/core/share_preference/share_pref_helper.dart';
-import 'package:dayuri/core/toast/toast_helper.dart';
-import 'package:dayuri/features/home/presentation/bloc/home_bloc.dart';
-import 'package:dayuri/features/home/presentation/bloc/home_event.dart';
-import 'package:dayuri/features/profile/data/repository/theme_repository.dart';
-import 'package:dayuri/features/profile/domain/entities/change_password_data.dart';
-import 'package:dayuri/features/profile/domain/usecases/change_password_uc.dart';
-import 'package:dayuri/features/profile/domain/usecases/get_profile_uc.dart';
-import 'package:dayuri/features/profile/domain/usecases/logout_uc.dart';
-import 'package:dayuri/features/profile/domain/usecases/update_profile_uc.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/routes/app_routes.dart';
+import 'package:ninaad_customer_portal/core/routes/routes_name.dart';
+import 'package:ninaad_customer_portal/core/share_preference/share_pref_helper.dart';
+import 'package:ninaad_customer_portal/core/toast/toast_helper.dart';
+import 'package:ninaad_customer_portal/features/profile/data/repository/theme_repository.dart';
+import 'package:ninaad_customer_portal/features/profile/domain/entities/change_password_data.dart';
+import 'package:ninaad_customer_portal/features/profile/domain/usecases/change_password_uc.dart';
+import 'package:ninaad_customer_portal/features/profile/domain/usecases/get_profile_uc.dart';
+import 'package:ninaad_customer_portal/features/profile/domain/usecases/logout_uc.dart';
+import 'package:ninaad_customer_portal/features/profile/domain/usecases/update_profile_uc.dart';
 import 'profile_event.dart';
 import 'profile_state.dart';
 
@@ -20,7 +18,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final GetProfileUseCase getProfileUseCase;
   final UpdateProfileUseCase updateProfileUseCase;
   final LogoutUseCase logoutUseCase;
-  final HomeBloc homeBloc;
   final ThemeRepository repository;
 
   ProfileBloc({
@@ -28,7 +25,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     required this.getProfileUseCase,
     required this.updateProfileUseCase,
     required this.logoutUseCase,
-    required this.homeBloc,
     required this.repository,
   }) : super(const ProfileState()) {
     on<OldPasswordChanged>(_onOldPasswordChanged);
@@ -245,11 +241,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         },
         (message) async {
           emit(state.copyWith(isLoading: false));
-          homeBloc.add(ResetBottomNavEvent());
-          await SharedPrefHelper.remove(AppStringsConstants.accessToken);
+          await SharedPrefHelper.remove(AppStringsConstants.loginResponse);
           await SharedPrefHelper.remove(AppStringsConstants.sessionId);
-          await SharedPrefHelper.remove(AppStringsConstants.companyId);
-          await SharedPrefHelper.remove(AppStringsConstants.themeModeKey);
           AppRoutes.pushReplacementNamed(RouteNames.login);
           ToastHelper.success(AppStringsConstants.logoutMsg);
         },

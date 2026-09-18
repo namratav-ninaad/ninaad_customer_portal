@@ -1,17 +1,19 @@
+import 'package:ninaad_customer_portal/features/cart/presentation/bloc/cart_bloc.dart';
+import 'package:ninaad_customer_portal/features/cart/presentation/bloc/cart_event.dart';
+import 'package:ninaad_customer_portal/features/product/presentation/widget/common_quantity_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yuri_sale/core/constants/app_colors.dart';
-import 'package:yuri_sale/core/constants/app_sizes.dart';
-import 'package:yuri_sale/core/constants/app_strings.dart';
-import 'package:yuri_sale/core/theme/theme_color_extension.dart';
-import 'package:yuri_sale/core/widgets/common_icon_widget.dart';
-import 'package:yuri_sale/core/widgets/common_network_image.dart';
-import 'package:yuri_sale/core/widgets/common_outline_button.dart';
-import 'package:yuri_sale/core/widgets/common_text_widget.dart';
-import 'package:yuri_sale/features/product/data/model/product.dart';
-import 'package:yuri_sale/features/product/presentation/bloc/product_bloc.dart';
-import 'package:yuri_sale/features/product/presentation/bloc/product_event.dart';
-import 'package:yuri_sale/features/product/presentation/bloc/product_state.dart';
+import 'package:ninaad_customer_portal/core/constants/app_colors.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_network_image.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_outline_button.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_widget.dart';
+import 'package:ninaad_customer_portal/features/product/data/model/product.dart';
+import 'package:ninaad_customer_portal/features/product/presentation/bloc/product_bloc.dart';
+import 'package:ninaad_customer_portal/features/product/presentation/bloc/product_event.dart';
+import 'package:ninaad_customer_portal/features/product/presentation/bloc/product_state.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductModel product;
@@ -27,6 +29,7 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var bloc = context.read<ProductBloc>();
     // final bool hasWarehouseStock = product.warehouseStock.isNotEmpty;
 
     return GestureDetector(
@@ -36,16 +39,16 @@ class ProductCard extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.all(AppSizes.p12),
         decoration: BoxDecoration(
-          color: context.greyFA,
-          // border: Border.all(color: context.greyC8),
+          // color: context.greyFA,
+          border: Border.all(color: context.greyC8),
           borderRadius: BorderRadius.circular(AppSizes.r12),
-          boxShadow: [
+          /* boxShadow: [
             BoxShadow(
               color: context.black.withValues(alpha: 0.1),
               offset: Offset(0, 2),
               blurRadius: 2,
             ),
-          ],
+          ],*/
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,7 +101,7 @@ class ProductCard extends StatelessWidget {
             // ------------------------------------------------------------
             CommonTextWidget(
               title: '${product.currencySymbol} ${product.listPrice}',
-              color: context.primaryRedColor,
+              color: context.primaryBlueColor,
               fontWeight: FontWeight.w700,
               fontSize: AppSizes.f12,
               maxLines: 1,
@@ -183,73 +186,73 @@ class ProductCard extends StatelessWidget {
 
             AppSizes.h10,
             BlocBuilder<ProductBloc, ProductState>(
-              buildWhen: (previous, current) {
-                return previous.loadingProductId != current.loadingProductId ||
-                    previous.cartQuantities != current.cartQuantities;
-              },
+              buildWhen: (previous, current) =>
+                  previous.loadingProductId != current.loadingProductId ||
+                  previous.cartQuantities != current.cartQuantities ||
+                  previous.products != current.products ||
+                  previous.lineIds != current.lineIds,
               builder: (context, state) {
-                final bool isLoading = state.loadingProductId == product.id;
+                final productData = state.products.firstWhere(
+                  (item) => item.id == product.id,
+                  orElse: () => product,
+                );
+                final bool isLoading = state.loadingProductId == productData.id;
 
-                final bool isInCart = product.alreadyInCart;
-                final num quantity = state.cartQuantities[product.id] ?? 1;
-
+                final bool isInCart = productData.alreadyInCart;
+                final num quantity = state.cartQuantities[productData.id] ?? 1;
+                /* debugPrint(
+                  'Product ID: ${product.id}, '
+                  'alreadyInCart: ${product.alreadyInCart}, '
+                  'quantity: $quantity',
+                );*/
                 // ==========================================================
                 // GO TO CART / QUANTITY
                 // ==========================================================
 
                 if (isInCart) {
-                  return Container(
-                    height: AppSizes.s32,
-                    padding: EdgeInsets.all(AppSizes.p4),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(AppSizes.r8),
-                      border: Border.all(color: context.greyC8),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        // ------------------------------------------------
-                        // MINUS
-                        // ------------------------------------------------
+                  return CommonQuantitySelector(
+                    onDecrease: quantity <= 1
+                        ? () {
+                            bloc.add(
+                              RemoveProductFromCart(productId: productData.id),
+                            );
 
-                        CommonIconWidget(
-                          onTap: quantity <= 1
-                              ? null
-                              : () {
-                                  context.read<ProductBloc>().add(
-                                    DecreaseProductQuantity(
-                                      productId: product.id,
-                                    ),
-                                  );
-                                },
-                          icon: Icons.remove,
-                          size: AppSizes.icon24,
-                          color: quantity <= 1 ? context.greyC8 : context.black,
-                        ),
-
-                        // ------------------------------------------------
-                        // QUANTITY
-                        // ------------------------------------------------
-                        CommonTextWidget(
-                          title: quantity.toInt().toString(),
-                          fontSize: AppSizes.f14,
-                          fontWeight: FontWeight.w600,
-                        ),
-
-                        // ------------------------------------------------
-                        // PLUS
-                        // ------------------------------------------------
-                        CommonIconWidget(
-                          onTap: () {
-                            context.read<ProductBloc>().add(
-                              IncreaseProductQuantity(productId: product.id),
+                            context.read<CartBloc>().add(
+                              RemoveCart(
+                                lineId: state.lineIds[productData.id]!.toInt(),
+                              ),
+                            );
+                          }
+                        : () {
+                            bloc.add(
+                              DecreaseProductQuantity(productId: productData.id),
                             );
                           },
-                          icon: Icons.add,
-                          size: AppSizes.icon24,
-                        ),
-                      ],
-                    ),
+                    minQuantity: 0,
+                    maxQuantity: productData.totalStock.onHand.toInt(),
+                    onQuantityChanged: (newQuantity) {
+                      if (newQuantity <= 1) {
+                        bloc.add(RemoveProductFromCart(productId: productData.id));
+                        context.read<CartBloc>().add(
+                          RemoveCart(
+                            lineId: state.lineIds[productData.id]!.toInt(),
+                          ),
+                        );
+                      } else {
+                        if (newQuantity != quantity.toInt()) {
+                          bloc.add(
+                            SetProductQuantity(
+                              productId: productData.id,
+                              quantity: newQuantity,
+                            ),
+                          );
+                        }
+                      }
+                    },
+                    onIncrease: () {
+                      bloc.add(IncreaseProductQuantity(productId: productData.id));
+                    },
+                    quantity: quantity.toInt(),
                   );
                 }
 
@@ -267,12 +270,12 @@ class ProductCard extends StatelessWidget {
                   isLoading: isLoading,
                   onTap: onTapAddCart,
                   borderRadius: AppSizes.r8,
-                  title: AppStringsConstants.addToCart,
+                  title: AppStringsConstants.add,
                   height: AppSizes.s32,
                   fontWeight: FontWeight.w700,
                   fontSize: AppSizes.f14,
-                  borderColor: context.primaryRedColor,
-                  textColor: context.primaryRedColor,
+                  borderColor: context.primaryBlueColor,
+                  textColor: context.primaryBlueColor,
                 );
               },
             ),

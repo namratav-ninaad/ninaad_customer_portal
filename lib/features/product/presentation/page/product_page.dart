@@ -1,25 +1,26 @@
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yuri_sale/core/constants/app_colors.dart';
-import 'package:yuri_sale/core/constants/app_sizes.dart';
-import 'package:yuri_sale/core/constants/app_strings.dart';
-import 'package:yuri_sale/core/routes/app_routes.dart';
-import 'package:yuri_sale/core/routes/routes_name.dart';
-import 'package:yuri_sale/core/theme/theme_color_extension.dart';
-import 'package:yuri_sale/core/widgets/common_appbar_widget.dart';
-import 'package:yuri_sale/core/widgets/common_circular_progress_indicator.dart';
-import 'package:yuri_sale/core/widgets/common_empty_text.dart';
-import 'package:yuri_sale/core/widgets/common_icon_widget.dart';
-import 'package:yuri_sale/core/widgets/common_text_field.dart';
-import 'package:yuri_sale/core/widgets/common_text_widget.dart';
-import 'package:yuri_sale/features/cart/presentation/bloc/cart_bloc.dart';
-import 'package:yuri_sale/features/cart/presentation/bloc/cart_event.dart';
-import 'package:yuri_sale/features/cart/presentation/bloc/cart_state.dart';
-import 'package:yuri_sale/features/product/domain/entities/add_cart_data.dart';
-import 'package:yuri_sale/features/product/presentation/bloc/product_bloc.dart';
-import 'package:yuri_sale/features/product/presentation/bloc/product_event.dart';
-import 'package:yuri_sale/features/product/presentation/bloc/product_state.dart';
-import 'package:yuri_sale/features/product/presentation/widget/product_card.dart';
+import 'package:ninaad_customer_portal/core/constants/app_colors.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/routes/app_routes.dart';
+import 'package:ninaad_customer_portal/core/routes/routes_name.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_appbar_widget.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_circular_progress_indicator.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_empty_text.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_icon_widget.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_field.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_widget.dart';
+import 'package:ninaad_customer_portal/features/cart/presentation/bloc/cart_bloc.dart';
+import 'package:ninaad_customer_portal/features/cart/presentation/bloc/cart_event.dart';
+import 'package:ninaad_customer_portal/features/cart/presentation/bloc/cart_state.dart';
+import 'package:ninaad_customer_portal/features/product/domain/entities/add_cart_data.dart';
+import 'package:ninaad_customer_portal/features/product/presentation/bloc/product_bloc.dart';
+import 'package:ninaad_customer_portal/features/product/presentation/bloc/product_event.dart';
+import 'package:ninaad_customer_portal/features/product/presentation/bloc/product_state.dart';
+import 'package:ninaad_customer_portal/features/product/presentation/widget/product_card.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key, this.backButtonShow = false});
@@ -100,7 +101,7 @@ class _ProductPageState extends State<ProductPage> {
       appBar: CommonAppbarWidget(
         leading: widget.backButtonShow ? null : AppSizes.h0,
 
-        title: widget.backButtonShow ? AppStringsConstants.browseProduct : '',
+        title: widget.backButtonShow ? AppStringsConstants.product : '',
 
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(
@@ -158,8 +159,8 @@ class _ProductPageState extends State<ProductPage> {
                             padding: EdgeInsets.all(AppSizes.p8),
 
                             decoration: BoxDecoration(
-                              color: context.greyFA,
-
+                              // color: context.greyFA,
+                              border: Border.all(color: context.greyC8),
                               borderRadius: BorderRadius.circular(AppSizes.r12),
                             ),
 
@@ -170,15 +171,15 @@ class _ProductPageState extends State<ProductPage> {
 
                           if (state.cartItemCount > 0)
                             Positioned(
-                              top: -4,
-                              right: -4,
+                              top: 1,
+                              right: 1,
 
                               child: Container(
                                 width: AppSizes.icon16,
                                 height: AppSizes.icon16,
 
-                                decoration: const BoxDecoration(
-                                  color: AppColorsConstants.red,
+                                decoration: BoxDecoration(
+                                  color: context.primaryBlueColor,
                                   shape: BoxShape.circle,
                                 ),
 
@@ -200,6 +201,26 @@ class _ProductPageState extends State<ProductPage> {
                     );
                   },
                 ),
+                AppSizes.w12,
+
+                GestureDetector(
+                  onTap: () {
+                    FocusManager.instance.primaryFocus?.unfocus();
+                    AppRoutes.pushNamed(RouteNames.filter);
+                  },
+
+                  child: Container(
+                    padding: EdgeInsets.all(AppSizes.p8),
+
+                    decoration: BoxDecoration(
+                      // color: context.greyFA,
+                      border: Border.all(color: context.greyC8),
+                      borderRadius: BorderRadius.circular(AppSizes.r12),
+                    ),
+
+                    child: CommonIconWidget(icon: Icons.filter_alt_outlined),
+                  ),
+                ),
               ],
             ),
           ),
@@ -213,7 +234,6 @@ class _ProductPageState extends State<ProductPage> {
         },
         listener: (context, cartState) {
           if (cartState.cartData != null) {
-            debugPrint('Cart Quantities: data--- ${cartState.cartQuantities}');
             if (cartState.cartQuantities.isNotEmpty &&
                 cartState.lineIds.isNotEmpty) {
               debugPrint('========== PRODUCT PAGE CART SYNC ==========');
@@ -286,8 +306,14 @@ class _ProductPageState extends State<ProductPage> {
 
                             decoration: BoxDecoration(
                               color: isSelected
-                                  ? context.primaryRedColor
-                                  : context.greyFA,
+                                  ? context.primaryBlueColor
+                                  : AppColorsConstants
+                                        .transparent /*context.greyFA*/,
+                              border: Border.all(
+                                color: isSelected
+                                    ? AppColorsConstants.transparent
+                                    : context.greyC8,
+                              ),
 
                               borderRadius: BorderRadius.circular(AppSizes.r12),
                             ),
@@ -319,7 +345,7 @@ class _ProductPageState extends State<ProductPage> {
 
                   // PRODUCT GRID
                   Expanded(
-                    child: state.isLoading
+                    child: state.status.isLoading
                         ? const Center(child: CommonCircularProgressIndicator())
                         : state.products.isEmpty
                         ? CommonEmptyText(
@@ -355,7 +381,7 @@ class _ProductPageState extends State<ProductPage> {
                                 onTap: () async {
                                   FocusManager.instance.primaryFocus?.unfocus();
                                   final res = await AppRoutes.pushNamed(
-                                    RouteNames.productDetail,
+                                    RouteNames.productDetailsPage,
 
                                     arguments: product,
                                   );

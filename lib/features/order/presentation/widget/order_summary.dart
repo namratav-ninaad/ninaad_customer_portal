@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:yuri_sale/core/constants/app_colors.dart';
-import 'package:yuri_sale/core/constants/app_sizes.dart';
-import 'package:yuri_sale/core/constants/app_strings.dart';
-import 'package:yuri_sale/core/theme/theme_color_extension.dart';
-import 'package:yuri_sale/core/widgets/common_divider.dart';
-import 'package:yuri_sale/core/widgets/common_text_widget.dart';
-import 'package:yuri_sale/features/cart/presentation/widget/summary_row.dart';
+import 'package:ninaad_customer_portal/core/constants/app_colors.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_divider.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_widget.dart';
+import 'package:ninaad_customer_portal/features/cart/presentation/widget/summary_row.dart';
 
 class OrderSummary extends StatelessWidget {
   const OrderSummary({
@@ -56,7 +56,7 @@ class OrderSummary extends StatelessWidget {
           label: AppStringsConstants.total,
           value: '$currency $total',
           textColor: context.grey89,
-          valueColor: AppColorsConstants.primaryRedColor,
+          valueColor: AppColorsConstants.primaryBlueColor,
         ),
       ],
     );

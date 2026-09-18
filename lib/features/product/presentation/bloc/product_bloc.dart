@@ -1,16 +1,17 @@
 import 'dart:async';
 
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yuri_sale/core/constants/app_strings.dart';
-import 'package:yuri_sale/core/toast/toast_helper.dart';
-import 'package:yuri_sale/features/cart/domain/entities/update_cart_qty.dart';
-import 'package:yuri_sale/features/cart/domain/usecases/update_cart_qty_uc.dart';
-import 'package:yuri_sale/features/product/data/model/category.dart';
-import 'package:yuri_sale/features/product/domain/entities/product_filter_data.dart';
-import 'package:yuri_sale/features/product/domain/usecases/add_cart_uc.dart';
-import 'package:yuri_sale/features/product/domain/usecases/category_uc.dart';
-import 'package:yuri_sale/features/product/domain/usecases/product_uc.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/toast/toast_helper.dart';
+import 'package:ninaad_customer_portal/features/cart/domain/entities/update_cart_qty.dart';
+import 'package:ninaad_customer_portal/features/cart/domain/usecases/update_cart_qty_uc.dart';
+import 'package:ninaad_customer_portal/features/product/data/model/category.dart';
+import 'package:ninaad_customer_portal/features/product/domain/entities/product_filter_data.dart';
+import 'package:ninaad_customer_portal/features/product/domain/usecases/add_cart_uc.dart';
+import 'package:ninaad_customer_portal/features/product/domain/usecases/category_uc.dart';
+import 'package:ninaad_customer_portal/features/product/domain/usecases/product_uc.dart';
 import 'product_event.dart';
 import 'product_state.dart';
 
@@ -30,9 +31,11 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     on<FetchCategoriesEvent>(_onFetchCategoriesEvent);
     on<AddCartEvent>(_onAddCart);
     on<SelectCategoryEvent>(_onSelectCategory);
+    on<RemoveProductFromCart>(_onRemoveProductFromCart);
     on<IncreaseProductQuantity>(_onIncreaseProductQuantity);
     on<DecreaseProductQuantity>(_onDecreaseProductQuantity);
     on<SyncCartDataToProducts>(_onSyncCartDataToProducts);
+    on<SetProductQuantity>(_onSetProductQuantity);
   }
 
   // PENDING PRODUCT QUANTITIES
@@ -42,6 +45,50 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   // DEBOUNCE TIMERS
 
   final Map<int, Timer> _productQuantityTimers = {};
+
+  // SET PRODUCT QUANTITY (from text field)
+  void _onSetProductQuantity(
+    SetProductQuantity event,
+    Emitter<ProductState> emit,
+  ) {
+    final int productId = event.productId;
+    final int newQty = event.quantity;
+
+    // Guard
+    if (newQty < 1) return;
+
+    final int? lineId = state.lineIds[productId];
+    if (lineId == null) {
+      debugPrint(
+        'SetQuantity skipped. Line ID not found for product: $productId',
+      );
+      return;
+    }
+
+    // 1. Optimistic UI update (instant)
+    _pendingProductQuantities[productId] = newQty;
+
+    final quantities = Map<int, int>.from(state.cartQuantities);
+    quantities[productId] = newQty;
+
+    emit(state.copyWith(cartQuantities: quantities, errorMessage: null));
+
+    debugPrint('PRODUCT SET QTY -> productId: $productId | newQty: $newQty');
+
+    // 2. Debounce API call
+    _productQuantityTimers[productId]?.cancel();
+
+    _productQuantityTimers[productId] = Timer(
+      const Duration(milliseconds: 500),
+      () {
+        _callProductQuantityApi(
+          productId: productId,
+          lineId: lineId,
+          quantity: newQty,
+        );
+      },
+    );
+  }
 
   // SYNC CART -> PRODUCT
   void _onSyncCartDataToProducts(
@@ -266,6 +313,34 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     }
   }
 
+  // REMOVE PRODUCT FROM CART
+  void _onRemoveProductFromCart(
+    RemoveProductFromCart event,
+    Emitter<ProductState> emit,
+  ) {
+    final updatedProducts = state.products.map((product) {
+      if (product.id == event.productId) {
+        product.alreadyInCart = false;
+      }
+
+      return product;
+    }).toList();
+    /*emit(state.copyWith(products: updatedProducts));*/
+    final updatedQuantities = Map<int, int>.from(state.cartQuantities);
+    updatedQuantities.remove(event.productId);
+
+    final updatedLineIds = Map<int, int>.from(state.lineIds);
+    updatedLineIds.remove(event.productId);
+
+    emit(
+      state.copyWith(
+        products: updatedProducts,
+        cartQuantities: updatedQuantities,
+        lineIds: updatedLineIds,
+      ),
+    );
+  }
+
   // SELECT CATEGORY
   void _onSelectCategory(
     SelectCategoryEvent event,
@@ -287,7 +362,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   ) async {
     emit(
       state.copyWith(
-        isLoading: true,
+        status: ApiStatus.loading,
         isAddCartSuccess: false,
         errorMessage: null,
       ),
@@ -299,7 +374,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       (failure) {
         emit(
           state.copyWith(
-            isLoading: false,
+            status: ApiStatus.failure,
             isAddCartSuccess: false,
             errorMessage: failure.message,
           ),
@@ -313,7 +388,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
 
         emit(
           state.copyWith(
-            isLoading: false,
+            status: ApiStatus.success,
             isAddCartSuccess: false,
             categories: [allCategory, ...categories],
             selectedCategory: allCategory,
@@ -332,7 +407,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   ) async {
     emit(
       state.copyWith(
-        isLoading: true,
+        status: ApiStatus.loading,
         isAddCartSuccess: false,
         errorMessage: null,
       ),
@@ -349,7 +424,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       (failure) {
         emit(
           state.copyWith(
-            isLoading: false,
+            status: ApiStatus.failure,
             isAddCartSuccess: false,
             errorMessage: failure.message,
           ),
@@ -358,7 +433,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       (products) {
         emit(
           state.copyWith(
-            isLoading: false,
+            status: ApiStatus.success,
             isAddCartSuccess: false,
             products: products,
           ),

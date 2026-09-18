@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:yuri_sale/features/product/data/model/category.dart';
-import 'package:yuri_sale/features/product/domain/entities/add_cart_data.dart';
+import 'package:ninaad_customer_portal/features/product/data/model/category.dart';
+import 'package:ninaad_customer_portal/features/product/domain/entities/add_cart_data.dart';
 
 abstract class ProductEvent extends Equatable {
   @override
@@ -39,12 +39,34 @@ class IncreaseProductQuantity extends ProductEvent {
   });
 }
 
+class RemoveProductFromCart extends ProductEvent {
+  final num productId;
+
+  RemoveProductFromCart({ required this.productId});
+
+  @override
+  List<Object?> get props => [productId];
+}
+
 class DecreaseProductQuantity extends ProductEvent {
   final num productId;
 
   DecreaseProductQuantity({
     required this.productId,
   });
+}
+
+class SetProductQuantity extends ProductEvent {
+  final int productId;
+  final int quantity;
+
+  SetProductQuantity({
+    required this.productId,
+    required this.quantity,
+  });
+
+  @override
+  List<Object?> get props => [productId, quantity];
 }
 
 class SyncCartDataToProducts extends ProductEvent {

@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:dayuri/features/profile/domain/entities/update_profile_data.dart';
+import 'package:ninaad_customer_portal/features/profile/domain/entities/update_profile_data.dart';
 
 abstract class ProfileEvent extends Equatable {
   const ProfileEvent();

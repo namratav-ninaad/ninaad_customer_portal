@@ -1,37 +1,39 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:dayuri/core/enum/app_enum.dart';
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/bloc/customer/customer_bloc.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/bloc/customer/customer_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dayuri/core/constants/app_sizes.dart';
-import 'package:dayuri/core/constants/app_strings.dart';
-import 'package:dayuri/core/constants/app_validators.dart';
-import 'package:dayuri/core/routes/app_routes.dart';
-import 'package:dayuri/core/theme/theme_color_extension.dart';
-import 'package:dayuri/core/toast/toast_helper.dart';
-import 'package:dayuri/core/widgets/common_appbar_widget.dart';
-import 'package:dayuri/core/widgets/common_button.dart';
-import 'package:dayuri/core/widgets/common_drop_down.dart';
-import 'package:dayuri/core/widgets/common_icon_widget.dart';
-import 'package:dayuri/core/widgets/common_outline_button.dart';
-import 'package:dayuri/core/widgets/common_text_field.dart';
-import 'package:dayuri/core/widgets/common_text_widget.dart';
-import 'package:dayuri/features/customer/data/model/company.dart';
-import 'package:dayuri/features/customer/data/model/contact_tag.dart';
-import 'package:dayuri/features/customer/data/model/country.dart';
-import 'package:dayuri/features/customer/data/model/note.dart';
-import 'package:dayuri/features/customer/data/model/payment_terms.dart';
-import 'package:dayuri/features/customer/data/model/state.dart';
-import 'package:dayuri/features/customer/domain/entities/create_customer_data.dart';
-import 'package:dayuri/features/customer/presentation/bloc/create_customer_bloc/create_customer_bloc.dart';
-import 'package:dayuri/features/customer/presentation/bloc/create_customer_bloc/create_customer_event.dart';
-import 'package:dayuri/features/customer/presentation/bloc/create_customer_bloc/create_customer_state.dart';
-import 'package:dayuri/features/customer/presentation/widget/add_attachment_bs.dart';
-import 'package:dayuri/features/customer/presentation/widget/add_note_bs.dart';
-import 'package:dayuri/features/customer/presentation/widget/address_selection_widget.dart';
-import 'package:dayuri/features/customer/presentation/widget/build_attachment_item.dart';
-import 'package:dayuri/features/customer/presentation/widget/note_card.dart';
+import 'package:ninaad_customer_portal/core/constants/app_sizes.dart';
+import 'package:ninaad_customer_portal/core/constants/app_strings.dart';
+import 'package:ninaad_customer_portal/core/constants/app_validators.dart';
+import 'package:ninaad_customer_portal/core/routes/app_routes.dart';
+import 'package:ninaad_customer_portal/core/theme/theme_color_extension.dart';
+import 'package:ninaad_customer_portal/core/toast/toast_helper.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_appbar_widget.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_button.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_drop_down.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_icon_widget.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_outline_button.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_field.dart';
+import 'package:ninaad_customer_portal/core/widgets/common_text_widget.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/company.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/contact_tag.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/country.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/note.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/payment_terms.dart';
+import 'package:ninaad_customer_portal/features/customer/data/model/state.dart';
+import 'package:ninaad_customer_portal/features/customer/domain/entities/create_customer_data.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/bloc/create_customer_bloc/create_customer_bloc.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/bloc/create_customer_bloc/create_customer_event.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/bloc/create_customer_bloc/create_customer_state.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/widget/add_attachment_bs.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/widget/add_note_bs.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/widget/address_selection_widget.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/widget/build_attachment_item.dart';
+import 'package:ninaad_customer_portal/features/customer/presentation/widget/note_card.dart';
 
 class CreateCustomerPage extends StatefulWidget {
   const CreateCustomerPage({super.key});
@@ -134,7 +136,10 @@ class _CreateCustomerPageState extends State<CreateCustomerPage>
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(AppSizes.r24)),
       ),
-      builder: (context) => SafeArea(top: false,child: AddNoteBottomSheet(onNoteAdded: _addNewNote)),
+      builder: (context) => SafeArea(
+        top: false,
+        child: AddNoteBottomSheet(onNoteAdded: _addNewNote),
+      ),
     );
   }
 
@@ -175,8 +180,9 @@ class _CreateCustomerPageState extends State<CreateCustomerPage>
             prev.state.isSuccess != curr.state.isSuccess ||
             prev.errorMessage != curr.errorMessage,
         listener: (context, state) {
-          if (state.state.isSuccess) {
+          if (state.state.isSuccess && state.isCreateCustomer) {
             ToastHelper.success(AppStringsConstants.createCustomerMsg);
+            context.read<CustomerBloc>().add(FetchCustomerEvent(''));
             AppRoutes.pop();
           }
           if (state.errorMessage?.isNotEmpty == true) {
@@ -300,8 +306,8 @@ class _CreateCustomerPageState extends State<CreateCustomerPage>
                       padding: EdgeInsets.all(AppSizes.p12),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(AppSizes.r12),
-                        // border: Border.all(color: context.greyC8),
-                        color: context.greyFA,
+                        border: Border.all(color: context.greyC8),
+                        // color: context.greyFA,
                       ),
                       child: Column(
                         children: [
@@ -441,8 +447,8 @@ class _CreateCustomerPageState extends State<CreateCustomerPage>
                       padding: EdgeInsets.all(AppSizes.p12),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(AppSizes.r12),
-                        // border: Border.all(color: context.greyC8),
-                        color: context.greyFA,
+                        border: Border.all(color: context.greyC8),
+                        // color: context.greyFA,
                       ),
                       child: Column(
                         children: [
@@ -486,8 +492,8 @@ class _CreateCustomerPageState extends State<CreateCustomerPage>
                       padding: EdgeInsets.all(AppSizes.p12),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(AppSizes.r12),
-                        // border: Border.all(color: context.greyC8),
-                        color: context.greyFA,
+                        border: Border.all(color: context.greyC8),
+                        // color: context.greyFA,
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

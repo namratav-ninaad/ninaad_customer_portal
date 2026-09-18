@@ -1,10 +1,11 @@
+import 'package:ninaad_customer_portal/core/enum/app_enum.dart';
 import 'package:equatable/equatable.dart';
-import 'package:yuri_sale/features/product/data/model/category.dart';
-import 'package:yuri_sale/features/product/data/model/product.dart'
+import 'package:ninaad_customer_portal/features/product/data/model/category.dart';
+import 'package:ninaad_customer_portal/features/product/data/model/product.dart'
     show ProductModel;
 
 class ProductState extends Equatable {
-  final bool isLoading;
+  final ApiStatus status;
 
   final int? loadingProductId;
 
@@ -23,7 +24,7 @@ class ProductState extends Equatable {
   final Map<int, int> lineIds;
 
   const ProductState({
-    this.isLoading = false,
+    this.status = ApiStatus.initial,
     this.products = const [],
     this.errorMessage,
     this.searchQuery = '',
@@ -36,7 +37,7 @@ class ProductState extends Equatable {
   });
 
   ProductState copyWith({
-    bool? isLoading,
+    ApiStatus? status,
     List<ProductModel>? products,
     String? errorMessage,
     String? searchQuery,
@@ -48,7 +49,7 @@ class ProductState extends Equatable {
     Map<int, int>? lineIds,
   }) {
     return ProductState(
-      isLoading: isLoading ?? this.isLoading,
+      status: status ?? this.status,
       loadingProductId: loadingProductId,
       products: products ?? this.products,
       errorMessage: errorMessage,
@@ -65,7 +66,7 @@ class ProductState extends Equatable {
   List<Object?> get props => [
     loadingProductId,
     selectedCategory,
-    isLoading,
+    status,
     products,
     errorMessage,
     isAddCartSuccess,
